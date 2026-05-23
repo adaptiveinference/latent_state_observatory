@@ -1,0 +1,12 @@
+torch
+transformers>=4.40
+accelerate
+sentencepiece
+protobuf
+pyyaml
+pandas
+tqdm
+numpy
+matplotlib
+pandas
+scipy

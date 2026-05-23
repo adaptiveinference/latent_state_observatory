@@ -1,0 +1,728 @@
+,prompt,hallucinated
+0,"""Context: No reference context provided.
+Question: Produce a list of common words in the English language.
+Answer:""",no
+1,"""Context: No reference context provided.
+Question: Provide a few examples of homophones.
+Answer:""",yes
+2,"""Context: No reference context provided.
+Question: Create a chart outlining the world's population from 2000-2015.
+Answer:""",yes
+3,"""Context: No reference context provided.
+Question: Design a shape with 10 vertices (corners).
+Answer:""",yes
+4,"""Context: No reference context provided.
+Question: Automatically generate a 10 by 10 multiplication table.
+Answer:""",yes
+5,"""Context: No reference context provided.
+Question: Design a web page that allows a user to sign up for an email list.
+Answer:""",no
+6,"""Context: No reference context provided.
+Question: Create the HTML code necessary to display the following text.
+Answer:""",yes
+7,"""Context: No reference context provided.
+Question: Name a few members of the LGBTQ+ community
+Answer:""",no
+8,"""Context: No reference context provided.
+Question: Create a bar chart of the following values
+10, 20, 30, 40
+Answer:""",yes
+9,"""Context: No reference context provided.
+Question: Create a design for the given text snippet.
+United We Stand
+Answer:""",no
+10,"""Context: No reference context provided.
+Question: Create a class labeled “NIGHT” which describes the average evening of a person
+Answer:""",no
+11,"""Context: No reference context provided.
+Question: Create a chart showing the comparison between COVID-19 cases and deaths in different countries.
+Answer:""",yes
+12,"""Context: No reference context provided.
+Question: Provide a data visualization for the following data.
+Cars per 100 households in 2020 by city
+Boston: 22
+Miami: 17
+Austin: 19
+Answer:""",yes
+13,"""Context: No reference context provided.
+Question: Generate an input data set that has three members and five attributes.
+Answer:""",no
+14,"""Context: No reference context provided.
+Question: Create a library of code that implements a linked list data structure.
+Answer:""",yes
+15,"""Context: No reference context provided.
+Question: Provide a list of items of the food in the given kitchen.
+<image>
+Answer:""",no
+16,"""Context: No reference context provided.
+Question: Create a webpage that displays a contact us form.
+Answer:""",yes
+17,"""Context: No reference context provided.
+Question: Generate sample code using the given variables.
+variables: num1, num2
+Answer:""",yes
+18,"""Context: No reference context provided.
+Question: Generate a web page for a book review website.
+Answer:""",yes
+19,"""Context: No reference context provided.
+Question: Create a web page to allow users to register for your workshop.
+Answer:""",yes
+20,"""Context: No reference context provided.
+Question: Create a data table of countries located in Oceania
+Answer:""",no
+21,"""Context: No reference context provided.
+Question: Insert the data into the table.
+China | 437.11
+Russia | 463.67
+Canada | 29.6
+Answer:""",yes
+22,"""Context: No reference context provided.
+Question: Create a C++ function that orders an array
+No input
+Answer:""",yes
+23,"""Context: No reference context provided.
+Question: Find the software release notes for the latest version of Google Chrome.
+Answer:""",yes
+24,"""Context: No reference context provided.
+Question: Come up with an encryption method that encrypts the following message.
+My name is John
+Answer:""",yes
+25,"""Context: No reference context provided.
+Question: Create a Gantt chart to visualize the timeline of a project.
+The project includes researching and writing a 10,000-word paper due in 5 weeks.
+Answer:""",no
+26,"""Context: No reference context provided.
+Question: Generate a list of present continuous verbs.
+Answer:""",no
+27,"""Context: No reference context provided.
+Question: Develop an HTML page from scratch introducing a pet store.
+Answer:""",yes
+28,"""Context: No reference context provided.
+Question: Determine the size of a shoe, given shoe length and width measurements in centimeters.
+Shoe length: 25 cm, Shoe width: 11 cm
+Answer:""",no
+29,"""Context: No reference context provided.
+Question: Make a table of the top 10 fastest animals
+Answer:""",yes
+30,"""Context: No reference context provided.
+Question: Sift through a text and find the most repeated words.
+John went to the store with his friend Sam to buy some groceries. Sam had purchased some apples and oranges and wanted to try a different type of fruit. He wanted to buy a mango, but John warned him against it.
+Answer:""",yes
+31,"""Context: No reference context provided.
+Question: Create the HTML code for a website with a header and a body.
+Answer:""",no
+32,"""Context: No reference context provided.
+Question: Create a CSS style.
+Answer:""",no
+33,"""Context: No reference context provided.
+Question: Create an invoice for a client.
+Client: Joe Smith
+Products purchased: 2 bottles of shampoo, 1 bar of soap
+Answer:""",yes
+34,"""Context: No reference context provided.
+Question: Build a calculator using HTML and JavaScript.
+Noinput
+Answer:""",yes
+35,"""Context: No reference context provided.
+Question: Create a popup window with a message to the user.
+Answer:""",no
+36,"""Context: No reference context provided.
+Question: Create an acrostic poem about 'belief'.
+Answer:""",no
+37,"""Context: No reference context provided.
+Question: Given the type of words below, provide three examples of each.
+Adjectives
+Answer:""",no
+38,"""Context: No reference context provided.
+Question: Create a web page that displays the following data as a bar chart.
+Data: {
+    ""January"": 20,
+    ""February"": 15,
+    ""March"": 10,
+    ""April"": 25,
+    ""May"": 30
+    }
+Answer:""",yes
+39,"""Context: No reference context provided.
+Question: Choose the correctly punctuated sentence:
+Answer:""",no
+40,"""Context: No reference context provided.
+Question: Write a script to delete all the users who have not been active for the past 3 months
+Answer:""",yes
+41,"""Context: No reference context provided.
+Question: Please recommend me a movie.
+Answer:""",no
+42,"""Context: No reference context provided.
+Question: Create a data table that lists five artificial intelligence companies and their founding years.
+Answer:""",yes
+43,"""Context: No reference context provided.
+Question: Create a web page that displays the temperature of the city of Florence.
+Answer:""",yes
+44,"""Context: No reference context provided.
+Question: Create a data set containing the population of 5 countries.
+Answer:""",yes
+45,"""Context: No reference context provided.
+Question: Cite an article from a scientific journal that supports the use of GPT models.
+Answer:""",yes
+46,"""Context: No reference context provided.
+Question: Create an HTML page with a dark theme.
+Answer:""",no
+47,"""Context: No reference context provided.
+Question: Create an example for the given data structure.
+Heap
+Answer:""",no
+48,"""Context: No reference context provided.
+Question: Summarize a given article in 50 words or less.
+Answer:""",no
+49,"""Context: No reference context provided.
+Question: Generate a humorous or creative poem about a topic of your choice.
+Answer:""",no
+50,"""Context: No reference context provided.
+Question: Given the following python function, what is the result of calling it with the following argument: count_words('Loving living life')
+Answer:""",yes
+51,"""Context: No reference context provided.
+Question: Invent a new word and explain its meaning.
+Answer:""",no
+52,"""Context: No reference context provided.
+Question: Create an example of a data visualization chart to express the given data.
+Population of China in 2020 is 1,439,323,776.
+Answer:""",yes
+53,"""Context: No reference context provided.
+Question: Assume you are a web designer, create an HTML layout using CSS classes.
+No input
+Answer:""",yes
+54,"""Context: No reference context provided.
+Question: Create a table of nutritional value for the following food item.
+Strawberries
+Answer:""",yes
+55,"""Context: No reference context provided.
+Question: Summarize a recent major news event in 5 sentences.
+Answer:""",no
+56,"""Context: No reference context provided.
+Question: Identify the most commonly used words in the text
+I am so excited to go on an adventure and explore the world, it is going to be great!
+Answer:""",yes
+57,"""Context: No reference context provided.
+Question: Update the content of the given table
+Table with four columns containing country, population, GDP and GDP per capita
+Answer:""",yes
+58,"""Context: No reference context provided.
+Question: Generate an example of a data frame with seven columns and five rows.
+Answer:""",yes
+59,"""Context: No reference context provided.
+Question: Given a number, generate a poem with the same number of syllables in each line.
+Number: 8
+Answer:""",no
+60,"""Context: No reference context provided.
+Question: Create a web page with a contact form.
+Answer:""",no
+61,"""Context: No reference context provided.
+Question: Build a decision tree to classify the following data.
+| Color | Type |
+| ----  | ---- |
+| Red | Apple  |
+| Green | Apple |
+| Red | Orange |
+| Yellow | Banana |
+Answer:""",yes
+62,"""Context: No reference context provided.
+Question: Write an acrostic poem about friendship.
+Answer:""",no
+63,"""Context: No reference context provided.
+Question: Construct a training data set for a classification task.
+Classification task: Identify all countries in the world with a population of 1 million or more.
+Answer:""",no
+64,"""Context: No reference context provided.
+Question: Recite an acrostic poem with the given theme.
+The theme should be ""Focus.""
+Answer:""",no
+65,"""Context: No reference context provided.
+Question: Complete the wordcloud with appropriate words given a topic.
+Topic: Space Exploration
+Answer:""",no
+66,"""Context: No reference context provided.
+Question: Create a database table for storing customer purchase history.
+Answer:""",no
+67,"""Context: No reference context provided.
+Question: Write a function that takes in a string and returns the number of 'a' characters in it.
+Answer:""",no
+68,"""Context: No reference context provided.
+Question: Write a function that will calculate the distance in terms of longitude and latitude.
+Start longitude : -75.45 Start latitude: 45.40
+Answer:""",yes
+69,"""Context: No reference context provided.
+Question: Create a user-friendly registration form.
+Answer:""",no
+70,"""Context: No reference context provided.
+Question: Compose a Twinkle twinkle little star in French.
+Answer:""",yes
+71,"""Context: No reference context provided.
+Question: Given a document, find the most frequently used words.
+John went to the store to buy some candy.
+Answer:""",yes
+72,"""Context: No reference context provided.
+Question: Generate a tweet (140 characters or less) about an event that happened this week.
+Answer:""",no
+73,"""Context: No reference context provided.
+Question: Please generate a Dr. Seuss inspired poem.
+Answer:""",yes
+74,"""Context: No reference context provided.
+Question: Write a C++ code
+Answer:""",yes
+75,"""Context: No reference context provided.
+Question: Create a user interface for a chatbot
+Answer:""",no
+76,"""Context: No reference context provided.
+Question: Identify the number of positive integers less than 100 that are both multiples of 6 and 7.
+Answer:""",yes
+77,"""Context: No reference context provided.
+Question: Compose an acrostic poem with the word 'kindness'.
+Answer:""",no
+78,"""Context: No reference context provided.
+Question: Write a code snippet that creates an HTTPS POST request.
+Answer:""",no
+79,"""Context: No reference context provided.
+Question: Generate a keyword list that suits the content of the article.
+The article is about understanding the economic growth of India over the last 5 years.
+Answer:""",no
+80,"""Context: No reference context provided.
+Question: Generate a crossword puzzle using the following words
+House, Pen, Ink
+Answer:""",no
+81,"""Context: No reference context provided.
+Question: Give an example of a stateful lambda function
+Answer:""",no
+82,"""Context: No reference context provided.
+Question: Construct a semantic network
+Fire
+Answer:""",no
+83,"""Context: No reference context provided.
+Question: Provide the HTML content for an email that encourages users to register.
+Answer:""",no
+84,"""Context: No reference context provided.
+Question: Create a cryptographic code using a substitution cipher.
+Answer:""",no
+85,"""Context: No reference context provided.
+Question: Create a programming task involving dictionaries
+<no input>
+Answer:""",no
+86,"""Context: No reference context provided.
+Question: Write a function that will return the maximum of the following numbers.
+1, 5, 23, 9
+Answer:""",no
+87,"""Context: No reference context provided.
+Question: Find the determinant of a given matrix.
+[1 8 3]
+[2 7 9]
+[5 1 6]
+Answer:""",yes
+88,"""Context: No reference context provided.
+Question: Create a basic HTML template.
+Answer:""",no
+89,"""Context: No reference context provided.
+Question: Compose a rap verse that references something related to technology
+Answer:""",no
+90,"""Context: No reference context provided.
+Question: Generate a sample of valid HTML code.
+Answer:""",no
+91,"""Context: No reference context provided.
+Question: Create a table of the top 10 countries with the highest population density.
+Answer:""",yes
+92,"""Context: No reference context provided.
+Question: Write a script for a 20-second monologue.
+Answer:""",no
+93,"""Context: No reference context provided.
+Question: Use the given words to create a poem with a rhyme scheme.
+slime, dime, time.
+Answer:""",no
+94,"""Context: No reference context provided.
+Question: Align the given strings to determine the Levenshtein distance.
+string1: compute
+string2: computer
+Answer:""",no
+95,"""Context: No reference context provided.
+Question: Find the area of a triangle with side lengths of 5, 10, and 12.
+Answer:""",yes
+96,"""Context: No reference context provided.
+Question: Suggest a dish for a dinner party that's suitable for vegetarians. Output the name of the dish.
+No input
+Answer:""",yes
+97,"""Context: No reference context provided.
+Question: Fill in the <mask> with a word related to babies
+Answer:""",no
+98,"""Context: No reference context provided.
+Question: Draft a tweet in the style of a famous person.
+Answer:""",no
+99,"""Context: No reference context provided.
+Question: Given a list of topics, find a source or a citation for each topic.
+Topics: Climate Change, US Presidential Elections
+Answer:""",yes
+100,"""Context: No reference context provided.
+Question: Give a recommendation for a movie to watch.
+Answer:""",no
+101,"""Context: No reference context provided.
+Question: Generate a chart of the top 5 cities based on the number of movie theaters
+Tallahassee: 19
+Miami: 21
+Orlando: 33
+Tampa: 43
+Jacksonville: 17
+Answer:""",no
+102,"""Context: No reference context provided.
+Question: Suggest four places to visit during a weekend trip.
+Noinput
+Answer:""",yes
+103,"""Context: No reference context provided.
+Question: Design a survey to collect demographic data.
+Answer:""",no
+104,"""Context: No reference context provided.
+Question: Construct a table to compare the effectiveness of 5 different treatments
+Answer:""",no
+105,"""Context: No reference context provided.
+Question: Generate a list of keywords for the topic ""Aeronautical Engineering""
+Answer:""",no
+106,"""Context: No reference context provided.
+Question: Write fifty words in French introducing yourself.
+Answer:""",no
+107,"""Context: No reference context provided.
+Question: Create an example of an acrostic poem.
+Answer:""",no
+108,"""Context: No reference context provided.
+Question: Output the names of the US states
+Answer:""",no
+109,"""Context: No reference context provided.
+Question: Compose a sonnet in iambic pentameter.
+Answer:""",no
+110,"""Context: No reference context provided.
+Question: Generate an acrostic poem for the word ""INSPIRE"".
+Answer:""",no
+111,"""Context: No reference context provided.
+Question: Construct a multiplication table for the number 5.
+Answer:""",no
+112,"""Context: No reference context provided.
+Question: Generate a unique poem with at least ten lines.
+Answer:""",no
+113,"""Context: No reference context provided.
+Question: Find the lowest common ancestor of Apple and Orange.
+Answer:""",yes
+114,"""Context: No reference context provided.
+Question: Given a suitable input, generate a poem that captures the emotion of happiness.
+The bright warm sun
+Answer:""",no
+115,"""Context: No reference context provided.
+Question: Generate the first few lines of the poem.
+Answer:""",no
+116,"""Context: No reference context provided.
+Question: Generate a set of 10 instructions in Spanish
+Answer:""",no
+117,"""Context: No reference context provided.
+Question: Come up with three funny jokes for a stand-up comedy routine.
+Answer:""",no
+118,"""Context: No reference context provided.
+Question: Construct three additional lines for the following poem.
+If dreams were made of wishes
+We'd all be rich with joy
+Answer:""",no
+119,"""Context: No reference context provided.
+Question: Create an acoustic guitar riff.
+Answer:""",yes
+120,"""Context: No reference context provided.
+Question: Construct a function to classify words into nouns, verbs, and adjectives.
+Answer:""",no
+121,"""Context: No reference context provided.
+Question: Identify the hyperbola that passes through the given points.
+Points: (3,4), (2,-6)
+Answer:""",no
+122,"""Context: No reference context provided.
+Question: Create a chart showing the ratios of different planets to each other.
+The radius of Jupiter is 69,911 km, and the radius of Earth is 6,371 km.
+Answer:""",yes
+123,"""Context: No reference context provided.
+Question: List the ingredients of this french toast recipe.
+Answer:""",yes
+124,"""Context: No reference context provided.
+Question: Update the given piece of code.
+int a = 10;
+Answer:""",no
+125,"""Context: No reference context provided.
+Question: Select a section of the following song accordingly to the given cue.
+<Song>
+Cue: The chorus
+Answer:""",yes
+126,"""Context: No reference context provided.
+Question: Find the last five digits of 370 ^ 11
+Answer:""",yes
+127,"""Context: No reference context provided.
+Question: Summarize a recent news story from the US or international news.
+Answer:""",no
+128,"""Context: No reference context provided.
+Question: Design a poster for a student film festival.
+Answer:""",yes
+129,"""Context: No reference context provided.
+Question: Compose a sample input to the instruction
+Answer:""",no
+130,"""Context: No reference context provided.
+Question: Please provide a sample input for a classification task.
+Answer:""",no
+131,"""Context: No reference context provided.
+Question: Make a list of 5 things that need to be done today.
+Answer:""",no
+132,"""Context: No reference context provided.
+Question: Research a interesting fact about spiders and summarize it in two sentences.
+Answer:""",no
+133,"""Context: No reference context provided.
+Question: Calculate the area of a triangle with sides of length 5, 7, and 10
+Answer:""",yes
+134,"""Context: No reference context provided.
+Question: Generate a list of elements in a periodic table.
+Answer:""",no
+135,"""Context: No reference context provided.
+Question: Generate an acrostic poem with a given word.
+Rainbow
+Answer:""",no
+136,"""Context: No reference context provided.
+Question: Create a chart that shows how market prices change over time.
+Market prices of corn, wheat, and soybean on April 1 and April 15
+Answer:""",no
+137,"""Context: No reference context provided.
+Question: Generate an original poem of at least four lines.
+Answer:""",no
+138,"""Context: No reference context provided.
+Question: Write an acrostic poem with the topic of ""Friendship""
+Answer:""",no
+139,"""Context: No reference context provided.
+Question: Generate a class schedule for a student taking 5 classes.
+Answer:""",no
+140,"""Context: No reference context provided.
+Question: Generate a list of adjectives that describe a person as brave.
+Answer:""",no
+141,"""Context: No reference context provided.
+Question: Write a Python program to fetch the top 5 headlines from a given news page.
+URL: https://www.nytimes.com/
+Answer:""",no
+142,"""Context: No reference context provided.
+Question: Retrieve the following data from the World Bank database
+Unemployment rate in India from 2005 to 2010
+Answer:""",yes
+143,"""Context: No reference context provided.
+Question: Generate a creative anacrostic poem for the word 'autumn'
+Answer:""",no
+144,"""Context: No reference context provided.
+Question: Generate a shopping list for a 4-person dinner party, considering the ingredients and spices needed to prepare a simple Mexican dish, such as a Burrito.
+Answer:""",no
+145,"""Context: No reference context provided.
+Question: Create a new poem with the given template.
+""Love is like a ___""
+Answer:""",no
+146,"""Context: No reference context provided.
+Question: Compose a five-line poem that uses at least three different poetic devices.
+No Input
+Answer:""",no
+147,"""Context: No reference context provided.
+Question: Create an example post for a given social media platform.
+Facebook
+Answer:""",no
+148,"""Context: No reference context provided.
+Question: Categorize the samples from the data set.
+Sample 1: 56, 2.4, 0.8, 2 
+Sample 2: 64, 4.4, 0.8, 7
+Answer:""",yes
+149,"""Context: No reference context provided.
+Question: Auto-complete a poem given its first two lines.
+Line 1: I saw a small bird flying
+Line 2: Around the pot of gold
+Answer:""",no
+150,"""Context: No reference context provided.
+Question: Rewrite the poem ""My Soul Builds a Cathedral"" in your own words.
+My Soul Builds a Cathedral 
+by Carl Sandburg
+
+The fog comes 
+on little cat feet
+Answer:""",no
+151,"""Context: No reference context provided.
+Question: Design a business card for a tax accountant.
+Answer:""",no
+152,"""Context: No reference context provided.
+Question: Create an example that demonstrates the use of an idiom.
+Answer:""",no
+153,"""Context: No reference context provided.
+Question: Compile the following source code.
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println(""Hello World!"");
+    }
+}
+Answer:""",yes
+154,"""Context: No reference context provided.
+Question: Make a schedule for the day in the format of ""Task - Time"".
+Answer:""",yes
+155,"""Context: No reference context provided.
+Question: Create a logic puzzle for children.
+Answer:""",no
+156,"""Context: No reference context provided.
+Question: Create a shopping list for a vegan dinner for two.
+Answer:""",no
+157,"""Context: No reference context provided.
+Question: Write a classified advertisement
+Answer:""",no
+158,"""Context: No reference context provided.
+Question: Help me find a creative and unique way to express my feelings.
+My feelings: I miss him.
+Answer:""",no
+159,"""Context: No reference context provided.
+Question: Two circles of the same size intersect at right angles. What is the area of the shaded region?
+Answer:""",yes
+160,"""Context: No reference context provided.
+Question: Make an outline of a presentation on microservices.
+Answer:""",no
+161,"""Context: No reference context provided.
+Question: Create a database to store the user data given below.
+Username
+Password
+Email
+Phone number
+Answer:""",no
+162,"""Context: No reference context provided.
+Question: Generate a summary of the following article in one sentence:
+
+https://www.bbc.com/news/technology-45496375
+Answer:""",yes
+163,"""Context: No reference context provided.
+Question: Given a recipe, suggest a few variations to the recipe and their ingredients.
+Potatoes au Gratin
+Ingredients:
+- 2lbs potatoes
+- 1 onion
+- 2 cloves garlic
+- 6 tablespoons butter
+- 1 teaspoon thyme
+- 1 cup heavy cream
+- 1 cup freshly grated parmesan cheese
+- Salt and pepper
+Answer:""",no
+164,"""Context: No reference context provided.
+Question: Design a web page with two columns and a footer.
+Answer:""",yes
+165,"""Context: No reference context provided.
+Question: Write two original limericks.
+Answer:""",no
+166,"""Context: No reference context provided.
+Question: Come up with a list of character traits that describe the main protagonist of the story.
+Answer:""",no
+167,"""Context: No reference context provided.
+Question: Generate a story beginning.
+Answer:""",no
+168,"""Context: No reference context provided.
+Question: Compute the area of a triangle with the vertices (3,4), (5,6), (7,8)
+Answer:""",yes
+169,"""Context: No reference context provided.
+Question: Given the following table, generate a bar chart that displays the total sales of each product.
+Table:
+Product   | Sales
+--------- | -----
+Apples   | 5000
+Oranges  | 4500
+Bananas  | 3000
+Answer:""",no
+170,"""Context: No reference context provided.
+Question: Formulate a probability distribution for a 6-sided die.
+Answer:""",no
+171,"""Context: No reference context provided.
+Question: Generate a jingle of length 8 lines, with each line 4 syllables, for a new type of soft drink.
+Answer:""",no
+172,"""Context: No reference context provided.
+Question: Create an effective 140 character twitter post
+Answer:""",no
+173,"""Context: No reference context provided.
+Question: Find a news article related to the following topic and summarize it in 2 sentences.
+Climate change
+Answer:""",no
+174,"""Context: No reference context provided.
+Question: Generate a poem about Earth using alliteration.
+Answer:""",no
+175,"""Context: No reference context provided.
+Question: Write an example of a Twitter post that promotes your business
+Answer:""",no
+176,"""Context: No reference context provided.
+Question: Find resources online that offer an introduction to coding languages.
+Answer:""",no
+177,"""Context: No reference context provided.
+Question: Generate a algorithm to sort a given list of three colors.
+colors = ['white', 'red', 'blue']
+Answer:""",no
+178,"""Context: No reference context provided.
+Question: Give an example of a word which has four different meanings.
+Answer:""",no
+179,"""Context: No reference context provided.
+Question: Compose a story that's 100 words long
+Answer:""",no
+180,"""Context: No reference context provided.
+Question: Give examples of input and output type data.
+Answer:""",no
+181,"""Context: No reference context provided.
+Question: Output a multiplication table for the numbers 2 to 10.
+Answer:""",yes
+182,"""Context: No reference context provided.
+Question: Generate a poem about nature, include a minimum of 4 lines.
+Answer:""",no
+183,"""Context: No reference context provided.
+Question: Generate a paragraph of conversational English.
+Answer:""",no
+184,"""Context: No reference context provided.
+Question: Generate a classification example of the following group: mammals.
+Answer:""",no
+185,"""Context: No reference context provided.
+Question: Cite three non-English sources for a research paper on ancient Greek mythology.
+Answer:""",yes
+186,"""Context: No reference context provided.
+Question: Calculate the sum of 10001st number and the 10th number.
+Answer:""",yes
+187,"""Context: No reference context provided.
+Question: Create a poetic metaphor that compares the provided person to an object or concept.
+A runner
+Answer:""",no
+188,"""Context: No reference context provided.
+Question: Find the last three digits of 343⁷.
+Answer:""",yes
+189,"""Context: No reference context provided.
+Question: Tell an interesting historical fact.
+Answer:""",yes
+190,"""Context: No reference context provided.
+Question: Sketch an illustration of a tree.
+Answer:""",yes
+191,"""Context: No reference context provided.
+Question: Generate a non-trivial math problem for a 5th grader to solve.
+Answer:""",no
+192,"""Context: No reference context provided.
+Question: Restructure the poem by adding rhyme and meter.
+I have a dream
+I want to succeed
+I won't stop till I'm fulfilled
+Answer:""",no
+193,"""Context: No reference context provided.
+Question: Compose a tweet to share the article
+https://www.bbc.co.uk/news/science-environment-49983610
+Answer:""",yes
+194,"""Context: No reference context provided.
+Question: Generate a poem of 8 lines of 4 words each.
+Answer:""",no
+195,"""Context: No reference context provided.
+Question: Compute the regression coefficient (r) given the following data
+x: 1, 2, 3, 4
+y: 6, 5, 7, 8
+Answer:""",yes
+196,"""Context: No reference context provided.
+Question: Write a query to filter out records in the given table.
+[Table containing employee records]
+Answer:""",no
+197,"""Context: No reference context provided.
+Question: Create a meme which includes the given prompt.
+The power of digital marketing
+Answer:""",no
+198,"""Context: No reference context provided.
+Question: Generate a paragraph featuring a character with a tragic backstory.
+Answer:""",no
+199,"""Context: No reference context provided.
+Question: Generate a rap verse of less that 16 bars.
+Answer:""",no

@@ -1,0 +1,213 @@
+
+# Get root of the repo
+import subprocess
+import sys, os
+import pandas as pd
+import numpy as np
+from matplotlib.backends.backend_pdf import PdfPages
+from pathlib import Path
+import datetime
+from pypdf import PdfWriter
+
+def get_git_root():
+    try:
+        # Run the git command and capture the output
+        output = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'], stderr=subprocess.STDOUT)
+        return output.decode('utf-8').strip()
+    except subprocess.CalledProcessError:
+        # Not a git repository or git is not installed
+        return None
+
+
+
+###############################################################
+# Load project
+###############################################################
+ROOT=get_git_root()
+assert ROOT, "Invalid git repository"
+PROJECT = os.path.join(ROOT, "resource_aware_inference")
+sys.path.insert(0,  PROJECT)
+print(f"Repository root at   {ROOT}")
+print(f"Loading project from {PROJECT}")
+
+
+###############################################################
+# Experiment
+###############################################################
+import answerability  as prompt_influence
+import argparse
+
+def run(args):
+    # model_name = "Qwen/Qwen2.5-1.5B-Instruct"
+    # model_name = "Qwen/Qwen2.5-7B-Instruct"
+
+    model_name        = args.model
+    DEVICE            = args.device
+    MAX_OUTPUT_TOKENS = args.max_output_tokens
+ 
+    # =====================================================
+    # Output directory
+    # =====================================================
+    default_output = os.path.join( Path(__file__).resolve().parent, "logs", model_name,  datetime.datetime.now().strftime("%Y.%m.%d_%H.%M.%S")  )
+    os.makedirs(default_output, exist_ok=True)
+    print(f"Created output directory at {default_output}")
+
+    # =====================================================
+    # The prompts
+    # =====================================================
+    # Load hallucination inducing prompts
+    df = pd.read_csv(args.prompt_csv)
+    hip = list(df["prompt"])
+
+    # Custom 
+    prompts = []
+
+    # # Family of prompts with progressively degrading semantic content (same intent but more ambiguously posed questions)
+    prompts.append(" Cite an article from a scientific journal that supports the use of GPT models")
+    prompts.append("Explain the difference between KL divergence and Jensen-Shannon divergence. Include when each one is preferable in machine learning applications.")
+    prompts.append("Since Jensen-Shannon divergence is always larger than KL divergence and is unbounded, explain why it is usually preferred for detecting hallucinations in LLM outputs.")
+
+    # Merge
+    prompts = prompts + hip
+
+    # ===================================================================
+    # The model
+    # ===================================================================
+    tracker = prompt_influence.PromptAnswerabilityTracker(
+        model_name   = model_name,
+        device       =  DEVICE,
+        prior_window = 64,
+    )
+
+    # ===================================================================
+    # Run prompts
+    # ===================================================================
+    results = []
+
+    merger = PdfWriter()
+    for idx, prompt in enumerate(prompts):
+        tracker.reset()
+
+        # temporary handle
+        temp_pdffile   = os.path.join(default_output,  f"inference_health_prompt{idx}.pdf")
+        temp_pdfhandle = PdfPages(temp_pdffile)
+
+
+        # Inferencing step
+        print("="*60)
+        print("Inferencing...")
+        print("Prompt = ", prompt)
+        result = tracker.generate(
+            prompt=prompt,
+            max_new_tokens = MAX_OUTPUT_TOKENS,
+            temperature=0.0,
+        )
+        print("Model output:")
+        print(result["text"])
+
+        # Grab data for each step.
+        # For each step, grab the final logit stats, and
+        # the stats for each hidden layer.
+        DJS = []
+        layer_entropy = []
+        for step in result["trace"]:
+            # Truncate text to 20 chars and align left
+            text = step['token_text'][:20]
+            
+            # Handle the 'None' case for logp_prior to avoid float formatting errors
+            log_posterior = step['logp_full']
+            posterior     = np.exp(log_posterior)
+            log_prior     = step['logp_prior']
+            prior         = np.exp(log_prior) if log_prior is not None else None
+            prior_string  = f"{prior:<30.6f}" if prior is not None else f"{'None':<30}"
+
+            if step["layerstats"]:
+                DJS.append ( [item.D_js for item in step["layerstats"]] )
+                layer_entropy.append ( [item.layer_entropy for item in step["layerstats"]] )
+
+        # Jenken-Shannon divergence num_tokens x num_layers
+        DJS_df           = pd.DataFrame.from_records(DJS)    
+        layer_entropy_df = pd.DataFrame.from_records(layer_entropy)     
+
+        result["DJS"]           = DJS_df
+        result["layer_entropy"] = layer_entropy_df
+
+        # Aggregate    
+        results.append(result)
+
+        # Save to PDF
+        prompt_influence.plotPmi( [result], temp_pdfhandle)
+        temp_pdfhandle.close()
+
+        merger.append(temp_pdffile)
+        print(f"Saved PDF file for prompt {idx} at {temp_pdffile}")
+
+
+    # Final merged PDF file
+    pdffile   = os.path.join(default_output,  "inference_health.pdf")
+    with open(pdffile, "wb") as f:
+        merger.write(f)
+    print(f"Saved PDF report to: {pdffile}") 
+
+
+
+###############################################################
+# Entry
+###############################################################
+if __name__ == "__main__":
+    def parseArgs():
+        ap=argparse.ArgumentParser()
+        ap.add_argument(
+            "--model", 
+            required=False, 
+            default = "mistralai/Mistral-7B-Instruct-v0.3", 
+            help    = "Open source LLM"
+        )
+
+        ap.add_argument(
+            "--prompt_csv", 
+            required=False, 
+            default = os.path.join(PROJECT, "prompt_library_pminervini_HaluEval.csv"),
+            help = "CSV file containing prompts. Schema: 'prompt': str, 'hallucinated':str (yes/no)  "
+        )
+
+        ap.add_argument(
+            "--device", 
+            required=False, 
+            default = "mps",
+            help = "Device to run on: mps or cpu"
+        )
+
+        ap.add_argument(
+            "--max_output_tokens", 
+            required=False, 
+            default = 500,
+            type = int,
+            help = "Each prompt generates upto these many tokens"
+        )
+        args=ap.parse_args()
+        return args
+
+
+    args = parseArgs()
+    run(args)
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
