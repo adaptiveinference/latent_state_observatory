@@ -1,0 +1,13 @@
+,prompt,hallucinated
+0,"""Context: No reference context provided.
+Question: Produce a list of common words in the English language.
+Answer:""",no
+1,"""Context: No reference context provided.
+Question: Provide a few examples of homophones.
+Answer:""",yes
+2,"""Context: No reference context provided.
+Question: Create a chart outlining the world's population from 2000-2015.
+Answer:""",yes
+3,"""Context: No reference context provided.
+Question: Design a shape with 10 vertices (corners).
+Answer:""",yes

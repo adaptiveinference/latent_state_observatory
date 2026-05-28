@@ -34,7 +34,10 @@ print(f"Loading project from {PROJECT}")
 ###############################################################
 # Experiment
 ###############################################################
-import answerability  as prompt_influence
+# import mech_interp_base  as mint
+
+import mech_interp_transformerlens  as mint
+
 import argparse
 
 def run(args):
@@ -73,7 +76,7 @@ def run(args):
     # ===================================================================
     # The model
     # ===================================================================
-    tracker = prompt_influence.PromptAnswerabilityTracker(
+    tracker = mint.InferenceHealthTracker(
         model_name   = model_name,
         device       =  DEVICE,
         prior_window = 64,
@@ -136,7 +139,7 @@ def run(args):
         results.append(result)
 
         # Save to PDF
-        prompt_influence.plotPmi( [result], temp_pdfhandle)
+        mint.plotPmi( [result], temp_pdfhandle)
         temp_pdfhandle.close()
 
         merger.append(temp_pdffile)
@@ -160,8 +163,8 @@ if __name__ == "__main__":
         ap.add_argument(
             "--model", 
             required=False, 
-            default = "mistralai/Mistral-7B-Instruct-v0.3", 
-            help    = "Open source LLM"
+            default = "mistralai/Mistral-7B-Instruct-v0.1", 
+            help    = "Open source LLM. Eg (mistralai/Mistral-7B-Instruct-v0.3)"
         )
 
         ap.add_argument(

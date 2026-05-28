@@ -10,3 +10,5 @@ numpy
 matplotlib
 pandas
 scipy
+pypdf
+transformer-lens
