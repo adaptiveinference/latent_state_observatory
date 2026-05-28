@@ -37,6 +37,7 @@ print(f"Loading project from {PROJECT}")
 # import mech_interp_base  as mint
 
 import mech_interp_transformerlens  as mint
+import utils
 
 import argparse
 
@@ -77,9 +78,10 @@ def run(args):
     # The model
     # ===================================================================
     tracker = mint.InferenceHealthTracker(
-        model_name   = model_name,
-        device       =  DEVICE,
-        prior_window = 64,
+        model_name            = model_name,
+        device                = DEVICE,
+        prior_window          = 64,
+        enable_internal_probe = not args.disable_internal_probe,
     )
 
     # ===================================================================
@@ -113,6 +115,9 @@ def run(args):
         # the stats for each hidden layer.
         DJS = []
         layer_entropy = []
+        attention_spectral_records = []
+        mlp_gating_records = []
+        residual_update_records = []
         for step in result["trace"]:
             # Truncate text to 20 chars and align left
             text = step['token_text'][:20]
@@ -128,12 +133,41 @@ def run(args):
                 DJS.append ( [item.D_js for item in step["layerstats"]] )
                 layer_entropy.append ( [item.layer_entropy for item in step["layerstats"]] )
 
-        # Jenken-Shannon divergence num_tokens x num_layers
+            # InternalProber records are experiment-facing telemetry.  They are
+            # intentionally flattened here rather than inside the model wrapper so
+            # future experiments can choose their own aggregation / clustering.
+            probe_record = step.get("internal_probe")
+            if probe_record:
+                flat_probe = tracker.internal_prober.flatten_probe_record(probe_record)
+                for rec in flat_probe.get("attention_spectral_stats", []):
+                    rec["step_idx"] = len(DJS) - 1
+                    rec["token_text"] = step["token_text"]
+                    attention_spectral_records.append(rec)
+                for rec in flat_probe.get("mlp_gating_stats", []):
+                    rec["step_idx"] = len(DJS) - 1
+                    rec["token_text"] = step["token_text"]
+                    mlp_gating_records.append(rec)
+                for rec in flat_probe.get("residual_update_stats", []):
+                    rec["step_idx"] = len(DJS) - 1
+                    rec["token_text"] = step["token_text"]
+                    residual_update_records.append(rec)
+
+        # Jensen-Shannon divergence num_tokens x num_layers
         DJS_df           = pd.DataFrame.from_records(DJS)    
         layer_entropy_df = pd.DataFrame.from_records(layer_entropy)     
 
         result["DJS"]           = DJS_df
         result["layer_entropy"] = layer_entropy_df
+
+        result["attention_spectral"] = pd.DataFrame.from_records(attention_spectral_records)
+        result["mlp_gating"]         = pd.DataFrame.from_records(mlp_gating_records)
+        result["residual_update"]    = pd.DataFrame.from_records(residual_update_records)
+
+        # Persist experiment-facing telemetry for downstream clustering / trajectory
+        # distance work without changing mech_interp_transformerlens.py.
+        result["attention_spectral"].to_csv(os.path.join(default_output, f"prompt{idx}_attention_spectral.csv"), index=False)
+        result["mlp_gating"].to_csv(os.path.join(default_output, f"prompt{idx}_mlp_gating.csv"), index=False)
+        result["residual_update"].to_csv(os.path.join(default_output, f"prompt{idx}_residual_update.csv"), index=False)
 
         # Aggregate    
         results.append(result)
@@ -187,6 +221,12 @@ if __name__ == "__main__":
             default = 500,
             type = int,
             help = "Each prompt generates upto these many tokens"
+        )
+
+        ap.add_argument(
+            "--disable_internal_probe",
+            action="store_true",
+            help="Disable InternalProber collection for faster legacy runs."
         )
         args=ap.parse_args()
         return args

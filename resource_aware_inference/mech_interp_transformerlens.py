@@ -6,10 +6,6 @@ from matplotlib.colors import LinearSegmentedColormap
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 import matplotlib.pyplot as plt
 import textwrap
-from dataclasses import dataclass, asdict
-from scipy.spatial import distance
-import scipy.stats as sps
-from collections import deque
 import pandas as pd
 import utils
 
@@ -19,54 +15,6 @@ import utils
 from transformer_lens import HookedTransformer
 
 #########################################################################
-# LLM internal breadcrumbs
-#########################################################################
-class RollingStats:
-    def __init__(self, W):
-        self.W = W
-        self.window = deque(maxlen=W)
-        self.sum = 0.0
-        self.sum_sq = 0.0
-        self.rolling_mean = None
-        self.rolling_var = None
-
-    def update_moving_stats(self, r_t):
-        if len(self.window) == self.W:
-            old_val = self.window[0]
-            self.sum -= old_val
-            self.sum_sq -= old_val**2
-
-        self.window.append(r_t)
-        self.sum += r_t
-        self.sum_sq += r_t**2
-
-        n = len(self.window)
-        mean = self.sum / n
-        variance = (self.sum_sq / n) - (mean**2)
-
-        self.rolling_mean = mean
-        self.rolling_var = max(0.0, variance)
-
-
-#########################################################################
-# LLM internal breadcrumbs
-#########################################################################
-@dataclass
-class HiddenState:
-    layer_idx: int                 # Hidden layer index. 0 = embed residual, 1..n_layers = post-block residuals.
-    layer_output_raw: torch.Tensor # Final-LN-normalized residual vector at latest token.
-    layer_output_prob: torch.Tensor# Logit-lens vocab distribution for that residual vector.
-
-
-@dataclass
-class LayerStats:
-    layer_idx: int
-    cosine_sim: float
-    D_js: float
-    layer_entropy: float
-
-
-#########################################################################
 # Deep layer inspection for LLM
 #########################################################################
 class InferenceHealthTracker:
@@ -74,18 +22,20 @@ class InferenceHealthTracker:
         self,
         model_name: str,
         device: str = "mps",
-        dtype=torch.float16,
+        dtype=torch.float32,
         prior_window: int = 128,
         fold_ln: bool = False,
         center_writing_weights: bool = False,
         center_unembed: bool = False,
+        internal_prober: utils.InternalProber = None,
+        enable_internal_probe: bool = True,
     ):
         self.device = device
         self.prior_window = prior_window
 
         # Maintain a rolling window of these many past tokens
         self.rolling_stat_window = 50
-        self.pmi_stats = RollingStats(self.rolling_stat_window)
+        self.pmi_stats = utils.RollingStats(self.rolling_stat_window)
 
         # TransformerLens model. The center/fold flags are set conservatively so
         # cached residuals remain close to the unfactored model computation.
@@ -99,6 +49,10 @@ class InferenceHealthTracker:
         )
         self.model.eval()
         self.tokenizer = self.model.tokenizer
+
+        self.internal_prober = internal_prober
+        if self.internal_prober is None and enable_internal_probe:
+            self.internal_prober = utils.InternalProber(self.model)
 
         self.reset()
 
@@ -115,10 +69,11 @@ class InferenceHealthTracker:
 
     def _cache_names_filter(self, name: str) -> bool:
         """
-        Keep only the residual stream tensors needed for the logit-lens layer
-        abstraction. This avoids caching attention patterns, q/k/v, MLP internals,
-        etc., while preserving your existing hidden-layer interface.
+        Cache the residual-stream tensors needed for the legacy logit-lens layer
+        abstraction, plus optional internal telemetry requested by InternalProber.
         """
+        if self.internal_prober is not None:
+            return self.internal_prober.cache_names_filter(name)
         return name == "hook_embed" or name.endswith("hook_resid_post")
 
     @torch.no_grad()
@@ -148,9 +103,10 @@ class InferenceHealthTracker:
 
         Returns:
             logprobs: [batch, d_vocab] final next-token log-probabilities
-            hidden_layer_info: list[HiddenState]
+            hidden_layer_info: list[utils.HiddenState]
                 layer 0        = embedding residual stream at latest token
                 layer 1..L     = post-transformer-block residual streams
+            internal_probe: dict of z_{p,t,l}-style telemetry collected from cache
         """
         logits, cache = self.model.run_with_cache(
             input_ids,
@@ -169,7 +125,7 @@ class InferenceHealthTracker:
         embed_resid = cache["hook_embed"][:, -1, :]
         h_normed, prob = self._logit_lens_distribution_from_residual(embed_resid)
         hidden_layer_info.append(
-            HiddenState(
+            utils.HiddenState(
                 layer_idx=0,
                 layer_output_raw=h_normed,
                 layer_output_prob=prob,
@@ -181,14 +137,18 @@ class InferenceHealthTracker:
             resid_post = cache[("resid_post", layer)][:, -1, :]
             h_normed, prob = self._logit_lens_distribution_from_residual(resid_post)
             hidden_layer_info.append(
-                HiddenState(
+                utils.HiddenState(
                     layer_idx=layer + 1,
                     layer_output_raw=h_normed,
                     layer_output_prob=prob,
                 )
             )
 
-        return logprobs, hidden_layer_info
+        internal_probe = None
+        if self.internal_prober is not None:
+            internal_probe = self.internal_prober.collect(cache, position=-1)
+
+        return logprobs, hidden_layer_info, internal_probe
 
     # =================================================================================================
     # Analyze layers
@@ -200,39 +160,7 @@ class InferenceHealthTracker:
     # =================================================================================================
     @torch.no_grad()
     def analyze_layers(self, H_full, H_prior):
-        if not H_full:
-            return None
-        if not H_prior:
-            return None
-        assert len(H_full) == len(H_prior), (
-            f"Mismatched layer counts between true and prior-only inference "
-            f"len(H_full):{len(H_full)} != len(H_prior):{len(H_prior)}"
-        )
-
-        layerstats = []
-        for l, (h_full, h_prior) in enumerate(zip(H_full, H_prior)):
-            a = h_full.layer_output_raw.detach().cpu().double().numpy().reshape(-1)
-            b = h_prior.layer_output_raw.detach().cpu().double().numpy().reshape(-1)
-
-            denom = np.linalg.norm(a) * np.linalg.norm(b)
-            cosine_sim = np.dot(a, b) / denom if denom > 0 else np.nan
-
-            a = h_full.layer_output_prob.detach().cpu().double().numpy().reshape(-1)
-            b = h_prior.layer_output_prob.detach().cpu().double().numpy().reshape(-1)
-            js_divergence = distance.jensenshannon(a, b) ** 2
-
-            max_entropy = np.log2(self.model.cfg.d_vocab)
-            layer_entropy = sps.entropy(a, base=2) / max_entropy
-
-            layerstats.append(
-                LayerStats(
-                    layer_idx=l,
-                    cosine_sim=cosine_sim,
-                    D_js=js_divergence,
-                    layer_entropy=layer_entropy,
-                )
-            )
-        return layerstats
+        return utils.analyze_layers(H_full, H_prior, d_vocab=self.model.cfg.d_vocab)
 
     # =======================================================================
     # Run the actual inference.
@@ -241,7 +169,7 @@ class InferenceHealthTracker:
     # =======================================================================
     @torch.no_grad()
     def run_true_inference(self, input, temperature):
-        full_logprobs, hidden_layer_info = self._next_token_distribution(self.full_input_ids)
+        full_logprobs, hidden_layer_info, internal_probe = self._next_token_distribution(self.full_input_ids)
 
         if temperature == 0.0:
             next_token_id = torch.argmax(full_logprobs, dim=-1, keepdim=True)
@@ -251,7 +179,7 @@ class InferenceHealthTracker:
 
         token_id = next_token_id.item()
         logp_full = full_logprobs[0, token_id].item()
-        return logp_full, next_token_id, hidden_layer_info
+        return logp_full, next_token_id, hidden_layer_info, internal_probe
 
     # ==================================================================================================
     # Run the shadow inference.
@@ -270,7 +198,7 @@ class InferenceHealthTracker:
                 dtype=torch.long,
                 device=self.device,
             )
-            prior_logprobs, hidden_layer_info = self._next_token_distribution(prior_input_ids)
+            prior_logprobs, hidden_layer_info, _ = self._next_token_distribution(prior_input_ids)
             logp_prior = prior_logprobs[0, token_id].item()
         return logp_prior, hidden_layer_info
 
@@ -282,7 +210,7 @@ class InferenceHealthTracker:
     def step(self, temperature: float = 0.0):
 
         # 1. Generate next token
-        logp_full, token_id, H_full = self.run_true_inference(self.full_input_ids, temperature)
+        logp_full, token_id, H_full, internal_probe = self.run_true_inference(self.full_input_ids, temperature)
 
         # 2. Run a shadow-pass to extract the promp-less distribution
         logp_prior, H_prior = self.run_promptless_inference(token_id.item())
@@ -319,6 +247,7 @@ class InferenceHealthTracker:
             "pmi_mean"      : self.pmi_stats.rolling_mean,
             "pmi_var"       : self.pmi_stats.rolling_var,
             "layerstats"    : layerstats,
+            "internal_probe" : internal_probe,
         }
 
     def generated_text(self):
