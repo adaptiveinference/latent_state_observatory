@@ -1,0 +1,1634 @@
+task_id,complexity,category,task_description,prompt,check_token,required_symbol,unit_test_code,evaluator_path
+PYC001,1,assignment,write one assignment statement that sets variable x to 42.,"Task ID: PYC001
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC001
+
+Your code must contain this required symbol:
+x = 42
+
+Implement this task:
+write one assignment statement that sets variable x to 42..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC001,x = 42,"assert ns.get('x') == 42
+return 'x equals 42'",prompt_PYC001/unittest.py
+PYC002,1,expression,define function square(n) returning n*n.,"Task ID: PYC002
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC002
+
+Your code must contain this required symbol:
+def square
+
+Implement this task:
+define function square(n) returning n*n..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC002,def square,"f=ns['square']; assert f(0)==0 and f(5)==25 and f(-3)==9
+return 'square() passed basic cases'",prompt_PYC002/unittest.py
+PYC003,1,string,"define function greet(name) returning 'Hello, ' + name.","Task ID: PYC003
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC003
+
+Your code must contain this required symbol:
+def greet
+
+Implement this task:
+define function greet(name) returning 'Hello, ' + name..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC003,def greet,"f=ns['greet']; assert f('Ada')=='Hello, Ada' and f('Bob')=='Hello, Bob'
+return 'greet() passed basic cases'",prompt_PYC003/unittest.py
+PYC004,1,boolean,define function is_positive(n) returning True iff n > 0.,"Task ID: PYC004
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC004
+
+Your code must contain this required symbol:
+def is_positive
+
+Implement this task:
+define function is_positive(n) returning True iff n > 0..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC004,def is_positive,"f=ns['is_positive']; assert f(1) is True and f(0) is False and f(-2) is False
+return 'is_positive() passed sign cases'",prompt_PYC004/unittest.py
+PYC005,1,list,define function first_item(xs) returning xs[0].,"Task ID: PYC005
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC005
+
+Your code must contain this required symbol:
+def first_item
+
+Implement this task:
+define function first_item(xs) returning xs[0]..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC005,def first_item,"f=ns['first_item']; assert f([3,4])==3 and f(['a','b'])=='a'
+return 'first_item() passed basic cases'",prompt_PYC005/unittest.py
+PYC006,1,dict,define function get_name(d) returning d['name'].,"Task ID: PYC006
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC006
+
+Your code must contain this required symbol:
+def get_name
+
+Implement this task:
+define function get_name(d) returning d['name']..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC006,def get_name,"f=ns['get_name']; assert f({'name':'Mira'})=='Mira'
+return 'get_name() passed basic dict case'",prompt_PYC006/unittest.py
+PYC007,1,math,"define function add(a,b) returning a+b.","Task ID: PYC007
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC007
+
+Your code must contain this required symbol:
+def add
+
+Implement this task:
+define function add(a,b) returning a+b..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC007,def add,"f=ns['add']; assert f(2,3)==5 and f(-1,5)==4
+return 'add() passed arithmetic cases'",prompt_PYC007/unittest.py
+PYC008,1,string,define function shout(s) returning s.upper().,"Task ID: PYC008
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC008
+
+Your code must contain this required symbol:
+def shout
+
+Implement this task:
+define function shout(s) returning s.upper()..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC008,def shout,"f=ns['shout']; assert f('abc')=='ABC' and f('Hi!')=='HI!'
+return 'shout() passed uppercase cases'",prompt_PYC008/unittest.py
+PYC009,1,list,define function list_len(xs) returning len(xs).,"Task ID: PYC009
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC009
+
+Your code must contain this required symbol:
+def list_len
+
+Implement this task:
+define function list_len(xs) returning len(xs)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC009,def list_len,"f=ns['list_len']; assert f([])==0 and f([1,2,3])==3
+return 'list_len() passed length cases'",prompt_PYC009/unittest.py
+PYC010,1,tuple,"define function make_pair(a,b) returning (a,b).","Task ID: PYC010
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC010
+
+Your code must contain this required symbol:
+def make_pair
+
+Implement this task:
+define function make_pair(a,b) returning (a,b)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC010,def make_pair,"f=ns['make_pair']; assert f(1,'x')==(1,'x')
+return 'make_pair() passed tuple case'",prompt_PYC010/unittest.py
+PYC011,2,condition,define function even_or_odd(n) returning 'even' or 'odd'.,"Task ID: PYC011
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC011
+
+Your code must contain this required symbol:
+def even_or_odd
+
+Implement this task:
+define function even_or_odd(n) returning 'even' or 'odd'..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC011,def even_or_odd,"f=ns['even_or_odd']; assert f(2)=='even' and f(3)=='odd' and f(0)=='even'
+return 'even_or_odd() passed parity cases'",prompt_PYC011/unittest.py
+PYC012,2,condition,define function abs_val(n) without using abs().,"Task ID: PYC012
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC012
+
+Your code must contain this required symbol:
+def abs_val
+
+Implement this task:
+define function abs_val(n) without using abs()..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC012,def abs_val,"f=ns['abs_val']; assert f(5)==5 and f(-5)==5 and f(0)==0
+return 'abs_val() passed cases'",prompt_PYC012/unittest.py
+PYC013,2,condition,"define function max2(a,b) returning the larger value.","Task ID: PYC013
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC013
+
+Your code must contain this required symbol:
+def max2
+
+Implement this task:
+define function max2(a,b) returning the larger value..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC013,def max2,"f=ns['max2']; assert f(3,5)==5 and f(9,1)==9 and f(4,4)==4
+return 'max2() passed cases'",prompt_PYC013/unittest.py
+PYC014,2,condition,"define function clamp01(x) clamping x into [0,1].","Task ID: PYC014
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC014
+
+Your code must contain this required symbol:
+def clamp01
+
+Implement this task:
+define function clamp01(x) clamping x into [0,1]..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC014,def clamp01,"f=ns['clamp01']; assert f(-.2)==0 and f(.4)==.4 and f(2)==1
+return 'clamp01() passed cases'",prompt_PYC014/unittest.py
+PYC015,2,condition,define function letter_grade(score) returning A/B/C/D/F.,"Task ID: PYC015
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC015
+
+Your code must contain this required symbol:
+def letter_grade
+
+Implement this task:
+define function letter_grade(score) returning A/B/C/D/F..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC015,def letter_grade,"f=ns['letter_grade']; assert f(95)=='A' and f(82)=='B' and f(72)=='C' and f(65)=='D' and f(40)=='F'
+return 'letter_grade() passed cases'",prompt_PYC015/unittest.py
+PYC016,2,string,define function starts_with_a(s) returning True if s starts with 'a' or 'A'.,"Task ID: PYC016
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC016
+
+Your code must contain this required symbol:
+def starts_with_a
+
+Implement this task:
+define function starts_with_a(s) returning True if s starts with 'a' or 'A'..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC016,def starts_with_a,"f=ns['starts_with_a']; assert f('apple') is True and f('Apple') is True and f('banana') is False
+return 'starts_with_a() passed cases'",prompt_PYC016/unittest.py
+PYC017,2,list,"define function safe_first(xs, default=None).","Task ID: PYC017
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC017
+
+Your code must contain this required symbol:
+def safe_first
+
+Implement this task:
+define function safe_first(xs, default=None)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC017,def safe_first,"f=ns['safe_first']; assert f([9,8])==9 and f([], 'x')=='x' and f([]) is None
+return 'safe_first() passed cases'",prompt_PYC017/unittest.py
+PYC018,2,dict,"define function get_or_zero(d, key) returning d[key] or 0.","Task ID: PYC018
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC018
+
+Your code must contain this required symbol:
+def get_or_zero
+
+Implement this task:
+define function get_or_zero(d, key) returning d[key] or 0..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC018,def get_or_zero,"f=ns['get_or_zero']; assert f({'a':3},'a')==3 and f({},'z')==0
+return 'get_or_zero() passed cases'",prompt_PYC018/unittest.py
+PYC019,2,math,"define function sign(n) returning -1, 0, or 1.","Task ID: PYC019
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC019
+
+Your code must contain this required symbol:
+def sign
+
+Implement this task:
+define function sign(n) returning -1, 0, or 1..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC019,def sign,"f=ns['sign']; assert f(-4)==-1 and f(0)==0 and f(10)==1
+return 'sign() passed cases'",prompt_PYC019/unittest.py
+PYC020,2,condition,define function is_leap_year(year) using standard leap year rules.,"Task ID: PYC020
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC020
+
+Your code must contain this required symbol:
+def is_leap_year
+
+Implement this task:
+define function is_leap_year(year) using standard leap year rules..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC020,def is_leap_year,"f=ns['is_leap_year']; assert f(2000) is True and f(1900) is False and f(2024) is True and f(2023) is False
+return 'is_leap_year() passed cases'",prompt_PYC020/unittest.py
+PYC021,3,loop,define function sum_to_n(n) returning 1+...+n using a loop.,"Task ID: PYC021
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC021
+
+Your code must contain this required symbol:
+def sum_to_n
+
+Implement this task:
+define function sum_to_n(n) returning 1+...+n using a loop..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC021,def sum_to_n,"f=ns['sum_to_n']; assert f(1)==1 and f(5)==15 and f(10)==55
+return 'sum_to_n() passed cases'",prompt_PYC021/unittest.py
+PYC022,3,loop,define function factorial(n) using a loop.,"Task ID: PYC022
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC022
+
+Your code must contain this required symbol:
+def factorial
+
+Implement this task:
+define function factorial(n) using a loop..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC022,def factorial,"f=ns['factorial']; assert f(0)==1 and f(1)==1 and f(5)==120
+return 'factorial() passed cases'",prompt_PYC022/unittest.py
+PYC023,3,loop,define function count_even(xs).,"Task ID: PYC023
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC023
+
+Your code must contain this required symbol:
+def count_even
+
+Implement this task:
+define function count_even(xs)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC023,def count_even,"f=ns['count_even']; assert f([1,2,4,5,8])==3 and f([])==0
+return 'count_even() passed cases'",prompt_PYC023/unittest.py
+PYC024,3,loop,define function sum_list(xs) without using sum().,"Task ID: PYC024
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC024
+
+Your code must contain this required symbol:
+def sum_list
+
+Implement this task:
+define function sum_list(xs) without using sum()..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC024,def sum_list,"f=ns['sum_list']; assert f([1,2,3])==6 and f([])==0 and f([-1,4])==3
+return 'sum_list() passed cases'",prompt_PYC024/unittest.py
+PYC025,3,loop,define function product_list(xs).,"Task ID: PYC025
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC025
+
+Your code must contain this required symbol:
+def product_list
+
+Implement this task:
+define function product_list(xs)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC025,def product_list,"f=ns['product_list']; assert f([2,3,4])==24 and f([5])==5 and f([])==1
+return 'product_list() passed cases'",prompt_PYC025/unittest.py
+PYC026,3,string,define function count_vowels(s).,"Task ID: PYC026
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC026
+
+Your code must contain this required symbol:
+def count_vowels
+
+Implement this task:
+define function count_vowels(s)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC026,def count_vowels,"f=ns['count_vowels']; assert f('hello')==2 and f('AEIOU')==5 and f('xyz')==0
+return 'count_vowels() passed cases'",prompt_PYC026/unittest.py
+PYC027,3,string,define function reverse_string(s) without slicing.,"Task ID: PYC027
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC027
+
+Your code must contain this required symbol:
+def reverse_string
+
+Implement this task:
+define function reverse_string(s) without slicing..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC027,def reverse_string,"f=ns['reverse_string']; assert f('abc')=='cba' and f('')==''
+return 'reverse_string() passed cases'",prompt_PYC027/unittest.py
+PYC028,3,list,define function filter_positive(xs) returning a new list.,"Task ID: PYC028
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC028
+
+Your code must contain this required symbol:
+def filter_positive
+
+Implement this task:
+define function filter_positive(xs) returning a new list..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC028,def filter_positive,"f=ns['filter_positive']; assert f([-1,0,2,3])==[2,3] and f([-2])==[]
+return 'filter_positive() passed cases'",prompt_PYC028/unittest.py
+PYC029,3,list,define function squares(xs) returning list of squares.,"Task ID: PYC029
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC029
+
+Your code must contain this required symbol:
+def squares
+
+Implement this task:
+define function squares(xs) returning list of squares..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC029,def squares,"f=ns['squares']; assert f([1,2,-3])==[1,4,9] and f([])==[]
+return 'squares() passed cases'",prompt_PYC029/unittest.py
+PYC030,3,dict,define function word_lengths(words) returning dict word->len(word).,"Task ID: PYC030
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC030
+
+Your code must contain this required symbol:
+def word_lengths
+
+Implement this task:
+define function word_lengths(words) returning dict word->len(word)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC030,def word_lengths,"f=ns['word_lengths']; assert f(['a','bee'])=={'a':1,'bee':3}
+return 'word_lengths() passed cases'",prompt_PYC030/unittest.py
+PYC031,4,nested_loop,define function flatten(list_of_lists).,"Task ID: PYC031
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC031
+
+Your code must contain this required symbol:
+def flatten
+
+Implement this task:
+define function flatten(list_of_lists)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC031,def flatten,"f=ns['flatten']; assert f([[1,2],[3],[]])==[1,2,3]
+return 'flatten() passed cases'",prompt_PYC031/unittest.py
+PYC032,4,nested_loop,define function transpose(matrix) for rectangular matrix.,"Task ID: PYC032
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC032
+
+Your code must contain this required symbol:
+def transpose
+
+Implement this task:
+define function transpose(matrix) for rectangular matrix..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC032,def transpose,"f=ns['transpose']; assert f([[1,2,3],[4,5,6]])==[[1,4],[2,5],[3,6]]
+return 'transpose() passed cases'",prompt_PYC032/unittest.py
+PYC033,4,string,define function is_palindrome(s) ignoring case and non-alnum.,"Task ID: PYC033
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC033
+
+Your code must contain this required symbol:
+def is_palindrome
+
+Implement this task:
+define function is_palindrome(s) ignoring case and non-alnum..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC033,def is_palindrome,"f=ns['is_palindrome']; assert f('A man, a plan, a canal: Panama') is True and f('race a car') is False
+return 'is_palindrome() passed cases'",prompt_PYC033/unittest.py
+PYC034,4,dict,define function invert_dict(d) assuming unique values.,"Task ID: PYC034
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC034
+
+Your code must contain this required symbol:
+def invert_dict
+
+Implement this task:
+define function invert_dict(d) assuming unique values..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC034,def invert_dict,"f=ns['invert_dict']; assert f({'a':1,'b':2})=={1:'a',2:'b'}
+return 'invert_dict() passed cases'",prompt_PYC034/unittest.py
+PYC035,4,list,define function unique_preserve_order(xs).,"Task ID: PYC035
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC035
+
+Your code must contain this required symbol:
+def unique_preserve_order
+
+Implement this task:
+define function unique_preserve_order(xs)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC035,def unique_preserve_order,"f=ns['unique_preserve_order']; assert f([1,2,1,3,2])==[1,2,3]
+return 'unique_preserve_order() passed cases'",prompt_PYC035/unittest.py
+PYC036,4,list,define function second_largest(xs) returning None if unavailable.,"Task ID: PYC036
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC036
+
+Your code must contain this required symbol:
+def second_largest
+
+Implement this task:
+define function second_largest(xs) returning None if unavailable..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC036,def second_largest,"f=ns['second_largest']; assert f([3,1,5,4])==4 and f([1]) is None and f([2,2,1])==1
+return 'second_largest() passed cases'",prompt_PYC036/unittest.py
+PYC037,4,math,"define function gcd(a,b) using Euclid algorithm.","Task ID: PYC037
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC037
+
+Your code must contain this required symbol:
+def gcd
+
+Implement this task:
+define function gcd(a,b) using Euclid algorithm..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC037,def gcd,"f=ns['gcd']; assert f(12,18)==6 and f(17,13)==1
+return 'gcd() passed cases'",prompt_PYC037/unittest.py
+PYC038,4,math,"define function lcm(a,b) using gcd.","Task ID: PYC038
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC038
+
+Your code must contain this required symbol:
+def lcm
+
+Implement this task:
+define function lcm(a,b) using gcd..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC038,def lcm,"f=ns['lcm']; assert f(4,6)==12 and f(7,5)==35
+return 'lcm() passed cases'",prompt_PYC038/unittest.py
+PYC039,4,string,define function compress_runs(s) like aaabb -> a3b2.,"Task ID: PYC039
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC039
+
+Your code must contain this required symbol:
+def compress_runs
+
+Implement this task:
+define function compress_runs(s) like aaabb -> a3b2..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC039,def compress_runs,"f=ns['compress_runs']; assert f('aaabb')=='a3b2' and f('')=='' and f('abc')=='a1b1c1'
+return 'compress_runs() passed cases'",prompt_PYC039/unittest.py
+PYC040,4,parsing,define function parse_key_value_lines(text) parsing lines k=v into dict.,"Task ID: PYC040
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC040
+
+Your code must contain this required symbol:
+def parse_key_value_lines
+
+Implement this task:
+define function parse_key_value_lines(text) parsing lines k=v into dict..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC040,def parse_key_value_lines,"f=ns['parse_key_value_lines']; assert f('a=1\nb=two')=={'a':'1','b':'two'}
+return 'parse_key_value_lines() passed cases'",prompt_PYC040/unittest.py
+PYC041,5,recursion,define recursive function fib(n).,"Task ID: PYC041
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC041
+
+Your code must contain this required symbol:
+def fib
+
+Implement this task:
+define recursive function fib(n)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC041,def fib,"f=ns['fib']; assert [f(i) for i in range(7)]==[0,1,1,2,3,5,8]
+return 'fib() passed cases'",prompt_PYC041/unittest.py
+PYC042,5,recursion,"define recursive function power(x,n) for n>=0.","Task ID: PYC042
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC042
+
+Your code must contain this required symbol:
+def power
+
+Implement this task:
+define recursive function power(x,n) for n>=0..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC042,def power,"f=ns['power']; assert f(2,0)==1 and f(2,5)==32 and f(3,3)==27
+return 'power() passed cases'",prompt_PYC042/unittest.py
+PYC043,5,recursion,define recursive function flatten_recursive(xs).,"Task ID: PYC043
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC043
+
+Your code must contain this required symbol:
+def flatten_recursive
+
+Implement this task:
+define recursive function flatten_recursive(xs)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC043,def flatten_recursive,"f=ns['flatten_recursive']; assert f([1,[2,[3]],4])==[1,2,3,4]
+return 'flatten_recursive() passed cases'",prompt_PYC043/unittest.py
+PYC044,5,search,"define function binary_search(xs,target) returning index or -1.","Task ID: PYC044
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC044
+
+Your code must contain this required symbol:
+def binary_search
+
+Implement this task:
+define function binary_search(xs,target) returning index or -1..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC044,def binary_search,"f=ns['binary_search']; xs=[1,3,5,7]; assert f(xs,5)==2 and f(xs,2)==-1
+return 'binary_search() passed cases'",prompt_PYC044/unittest.py
+PYC045,5,sort,define function insertion_sort(xs) returning sorted copy.,"Task ID: PYC045
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC045
+
+Your code must contain this required symbol:
+def insertion_sort
+
+Implement this task:
+define function insertion_sort(xs) returning sorted copy..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC045,def insertion_sort,"f=ns['insertion_sort']; xs=[3,1,2]; out=f(xs); assert out==[1,2,3] and xs==[3,1,2]
+return 'insertion_sort() passed cases'",prompt_PYC045/unittest.py
+PYC046,5,sort,"define function merge_sorted(a,b).","Task ID: PYC046
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC046
+
+Your code must contain this required symbol:
+def merge_sorted
+
+Implement this task:
+define function merge_sorted(a,b)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC046,def merge_sorted,"f=ns['merge_sorted']; assert f([1,3],[2,4])==[1,2,3,4] and f([], [1])==[1]
+return 'merge_sorted() passed cases'",prompt_PYC046/unittest.py
+PYC047,5,dict,define function group_by_first_letter(words).,"Task ID: PYC047
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC047
+
+Your code must contain this required symbol:
+def group_by_first_letter
+
+Implement this task:
+define function group_by_first_letter(words)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC047,def group_by_first_letter,"f=ns['group_by_first_letter']; assert f(['apple','ape','bat'])=={'a':['apple','ape'],'b':['bat']}
+return 'group_by_first_letter() passed cases'",prompt_PYC047/unittest.py
+PYC048,5,string,define function most_common_char(s) ignoring spaces.,"Task ID: PYC048
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC048
+
+Your code must contain this required symbol:
+def most_common_char
+
+Implement this task:
+define function most_common_char(s) ignoring spaces..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC048,def most_common_char,"f=ns['most_common_char']; assert f('a b a c')=='a'
+return 'most_common_char() passed cases'",prompt_PYC048/unittest.py
+PYC049,5,validation,"define function valid_parentheses(s) for (), [], {}.","Task ID: PYC049
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC049
+
+Your code must contain this required symbol:
+def valid_parentheses
+
+Implement this task:
+define function valid_parentheses(s) for (), [], {}..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC049,def valid_parentheses,"f=ns['valid_parentheses']; assert f('([]){}') is True and f('([)]') is False
+return 'valid_parentheses() passed cases'",prompt_PYC049/unittest.py
+PYC050,5,matrix,"define function matrix_add(A,B).","Task ID: PYC050
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC050
+
+Your code must contain this required symbol:
+def matrix_add
+
+Implement this task:
+define function matrix_add(A,B)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC050,def matrix_add,"f=ns['matrix_add']; assert f([[1,2]], [[3,4]])==[[4,6]]
+return 'matrix_add() passed cases'",prompt_PYC050/unittest.py
+PYC051,6,class,"define class Counter with increment(), decrement(), value().","Task ID: PYC051
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC051
+
+Your code must contain this required symbol:
+class Counter
+
+Implement this task:
+define class Counter with increment(), decrement(), value()..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC051,class Counter,"C=ns['Counter']; c=C(); c.increment(); c.increment(); c.decrement(); assert c.value()==1
+return 'Counter class passed cases'",prompt_PYC051/unittest.py
+PYC052,6,class,"define class BankAccount with deposit, withdraw, balance.","Task ID: PYC052
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC052
+
+Your code must contain this required symbol:
+class BankAccount
+
+Implement this task:
+define class BankAccount with deposit, withdraw, balance..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC052,class BankAccount,"B=ns['BankAccount']; b=B(); b.deposit(100); b.withdraw(30); assert b.balance()==70
+return 'BankAccount class passed cases'",prompt_PYC052/unittest.py
+PYC053,6,class,define dataclass Point with distance_to(other).,"Task ID: PYC053
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC053
+
+Your code must contain this required symbol:
+class Point
+
+Implement this task:
+define dataclass Point with distance_to(other)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC053,class Point,"P=ns['Point']; p=P(0,0); q=P(3,4); assert abs(p.distance_to(q)-5.0)<1e-9
+return 'Point class passed cases'",prompt_PYC053/unittest.py
+PYC054,6,iterator,define generator function countdown(n).,"Task ID: PYC054
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC054
+
+Your code must contain this required symbol:
+def countdown
+
+Implement this task:
+define generator function countdown(n)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC054,def countdown,"f=ns['countdown']; assert list(f(3))==[3,2,1,0]
+return 'countdown() passed cases'",prompt_PYC054/unittest.py
+PYC055,6,iterator,"define generator function chunks(xs, size).","Task ID: PYC055
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC055
+
+Your code must contain this required symbol:
+def chunks
+
+Implement this task:
+define generator function chunks(xs, size)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC055,def chunks,"f=ns['chunks']; assert list(f([1,2,3,4,5],2))==[[1,2],[3,4],[5]]
+return 'chunks() passed cases'",prompt_PYC055/unittest.py
+PYC056,6,decorator,define decorator count_calls(fn) storing wrapper.calls.,"Task ID: PYC056
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC056
+
+Your code must contain this required symbol:
+def count_calls
+
+Implement this task:
+define decorator count_calls(fn) storing wrapper.calls..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC056,def count_calls,"dec=ns['count_calls'];
+@dec
+def f(x): return x+1
+assert f(1)==2 and f(2)==3 and getattr(f,'calls')==2
+return 'count_calls() passed cases'",prompt_PYC056/unittest.py
+PYC057,6,context,define contextmanager temp_cwd(path) using contextlib.,"Task ID: PYC057
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC057
+
+Your code must contain this required symbol:
+def temp_cwd
+
+Implement this task:
+define contextmanager temp_cwd(path) using contextlib..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC057,def temp_cwd,"f=ns['temp_cwd']; import os, tempfile
+old=os.getcwd()
+with tempfile.TemporaryDirectory() as d:
+    with f(d): assert os.getcwd()==d
+assert os.getcwd()==old
+return 'temp_cwd() passed cases'",prompt_PYC057/unittest.py
+PYC058,6,file,define function read_nonempty_lines(path).,"Task ID: PYC058
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC058
+
+Your code must contain this required symbol:
+def read_nonempty_lines
+
+Implement this task:
+define function read_nonempty_lines(path)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC058,def read_nonempty_lines,"f=ns['read_nonempty_lines']; import tempfile, os
+fd,path=tempfile.mkstemp(text=True); os.close(fd)
+open(path,'w').write('a\n\n b \n')
+try: assert f(path)==['a','b']
+finally: os.remove(path)
+return 'read_nonempty_lines() passed cases'",prompt_PYC058/unittest.py
+PYC059,6,json,"define function load_json_field(path, field).","Task ID: PYC059
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC059
+
+Your code must contain this required symbol:
+def load_json_field
+
+Implement this task:
+define function load_json_field(path, field)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC059,def load_json_field,"f=ns['load_json_field']; import tempfile, os, json
+fd,path=tempfile.mkstemp(text=True); os.close(fd)
+open(path,'w').write(json.dumps({'x':7}))
+try: assert f(path,'x')==7
+finally: os.remove(path)
+return 'load_json_field() passed cases'",prompt_PYC059/unittest.py
+PYC060,6,csv,"define function csv_column_sum(path, column).","Task ID: PYC060
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC060
+
+Your code must contain this required symbol:
+def csv_column_sum
+
+Implement this task:
+define function csv_column_sum(path, column)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC060,def csv_column_sum,"f=ns['csv_column_sum']; import tempfile, os
+fd,path=tempfile.mkstemp(text=True); os.close(fd)
+open(path,'w').write('a,b\n1,2\n3,4\n')
+try: assert f(path,'a')==4
+finally: os.remove(path)
+return 'csv_column_sum() passed cases'",prompt_PYC060/unittest.py
+PYC061,7,algorithm,"define function bfs(graph,start) returning visit order.","Task ID: PYC061
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC061
+
+Your code must contain this required symbol:
+def bfs
+
+Implement this task:
+define function bfs(graph,start) returning visit order..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC061,def bfs,"f=ns['bfs']; g={'a':['b','c'],'b':['d'],'c':[],'d':[]}; assert f(g,'a')==['a','b','c','d']
+return 'bfs() passed cases'",prompt_PYC061/unittest.py
+PYC062,7,algorithm,"define function dfs_iterative(graph,start) returning visit order.","Task ID: PYC062
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC062
+
+Your code must contain this required symbol:
+def dfs_iterative
+
+Implement this task:
+define function dfs_iterative(graph,start) returning visit order..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC062,def dfs_iterative,"f=ns['dfs_iterative']; g={'a':['b','c'],'b':['d'],'c':[],'d':[]}; out=f(g,'a'); assert out[0]=='a' and set(out)==set(g)
+return 'dfs_iterative() passed cases'",prompt_PYC062/unittest.py
+PYC063,7,algorithm,define function topological_sort(graph) for DAG.,"Task ID: PYC063
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC063
+
+Your code must contain this required symbol:
+def topological_sort
+
+Implement this task:
+define function topological_sort(graph) for DAG..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC063,def topological_sort,"f=ns['topological_sort']; g={'a':['c'],'b':['c'],'c':[]}; out=f(g); pos={x:i for i,x in enumerate(out)}; assert pos['a']<pos['c'] and pos['b']<pos['c']
+return 'topological_sort() passed cases'",prompt_PYC063/unittest.py
+PYC064,7,algorithm,"define function shortest_path_unweighted(graph,start,goal).","Task ID: PYC064
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC064
+
+Your code must contain this required symbol:
+def shortest_path_unweighted
+
+Implement this task:
+define function shortest_path_unweighted(graph,start,goal)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC064,def shortest_path_unweighted,"f=ns['shortest_path_unweighted']; g={'a':['b','c'],'b':['d'],'c':['d'],'d':[]}; out=f(g,'a','d'); assert out in (['a','b','d'], ['a','c','d'])
+return 'shortest_path_unweighted() passed cases'",prompt_PYC064/unittest.py
+PYC065,7,algorithm,"define function two_sum(nums,target) returning indices or None.","Task ID: PYC065
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC065
+
+Your code must contain this required symbol:
+def two_sum
+
+Implement this task:
+define function two_sum(nums,target) returning indices or None..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC065,def two_sum,"f=ns['two_sum']; out=f([2,7,11,15],9); assert out is not None and set(out)=={0,1}; assert f([1,2],9) is None
+return 'two_sum() passed cases'",prompt_PYC065/unittest.py
+PYC066,7,algorithm,"define function sliding_window_max_sum(xs,k).","Task ID: PYC066
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC066
+
+Your code must contain this required symbol:
+def sliding_window_max_sum
+
+Implement this task:
+define function sliding_window_max_sum(xs,k)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC066,def sliding_window_max_sum,"f=ns['sliding_window_max_sum']; assert f([1,2,3,4],2)==7 and f([5],1)==5
+return 'sliding_window_max_sum() passed cases'",prompt_PYC066/unittest.py
+PYC067,7,algorithm,define function longest_unique_substring(s) returning length.,"Task ID: PYC067
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC067
+
+Your code must contain this required symbol:
+def longest_unique_substring
+
+Implement this task:
+define function longest_unique_substring(s) returning length..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC067,def longest_unique_substring,"f=ns['longest_unique_substring']; assert f('abcabcbb')==3 and f('bbbbb')==1 and f('')==0
+return 'longest_unique_substring() passed cases'",prompt_PYC067/unittest.py
+PYC068,7,algorithm,"define function coin_change_min(coins, amount).","Task ID: PYC068
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC068
+
+Your code must contain this required symbol:
+def coin_change_min
+
+Implement this task:
+define function coin_change_min(coins, amount)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC068,def coin_change_min,"f=ns['coin_change_min']; assert f([1,2,5],11)==3 and f([2],3)==-1
+return 'coin_change_min() passed cases'",prompt_PYC068/unittest.py
+PYC069,7,algorithm,"define function knapsack_01(weights, values, capacity).","Task ID: PYC069
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC069
+
+Your code must contain this required symbol:
+def knapsack_01
+
+Implement this task:
+define function knapsack_01(weights, values, capacity)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC069,def knapsack_01,"f=ns['knapsack_01']; assert f([2,3,4],[3,4,5],5)==7
+return 'knapsack_01() passed cases'",prompt_PYC069/unittest.py
+PYC070,7,algorithm,"define function edit_distance(a,b).","Task ID: PYC070
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC070
+
+Your code must contain this required symbol:
+def edit_distance
+
+Implement this task:
+define function edit_distance(a,b)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC070,def edit_distance,"f=ns['edit_distance']; assert f('kitten','sitting')==3 and f('','abc')==3
+return 'edit_distance() passed cases'",prompt_PYC070/unittest.py
+PYC071,8,parser,"define function tokenize_arithmetic(expr) for integers,+,-,*,/,(,).","Task ID: PYC071
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC071
+
+Your code must contain this required symbol:
+def tokenize_arithmetic
+
+Implement this task:
+define function tokenize_arithmetic(expr) for integers,+,-,*,/,(,)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC071,def tokenize_arithmetic,"f=ns['tokenize_arithmetic']; assert f('12 + (3*4)')==['12','+','(','3','*','4',')']
+return 'tokenize_arithmetic() passed cases'",prompt_PYC071/unittest.py
+PYC072,8,parser,define function eval_rpn(tokens).,"Task ID: PYC072
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC072
+
+Your code must contain this required symbol:
+def eval_rpn
+
+Implement this task:
+define function eval_rpn(tokens)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC072,def eval_rpn,"f=ns['eval_rpn']; assert f(['2','3','+','4','*'])==20
+return 'eval_rpn() passed cases'",prompt_PYC072/unittest.py
+PYC073,8,parser,define function parse_iso_date(s) returning datetime.date.,"Task ID: PYC073
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC073
+
+Your code must contain this required symbol:
+def parse_iso_date
+
+Implement this task:
+define function parse_iso_date(s) returning datetime.date..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC073,def parse_iso_date,"f=ns['parse_iso_date']; import datetime; assert f('2026-05-31')==datetime.date(2026,5,31)
+return 'parse_iso_date() passed cases'",prompt_PYC073/unittest.py
+PYC074,8,dataframe_like,"define function group_sum(rows, key_field, value_field) for list of dicts.","Task ID: PYC074
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC074
+
+Your code must contain this required symbol:
+def group_sum
+
+Implement this task:
+define function group_sum(rows, key_field, value_field) for list of dicts..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC074,def group_sum,"f=ns['group_sum']; rows=[{'c':'a','v':2},{'c':'a','v':3},{'c':'b','v':1}]; assert f(rows,'c','v')=={'a':5,'b':1}
+return 'group_sum() passed cases'",prompt_PYC074/unittest.py
+PYC075,8,dataframe_like,"define function inner_join(left,right,left_key,right_key).","Task ID: PYC075
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC075
+
+Your code must contain this required symbol:
+def inner_join
+
+Implement this task:
+define function inner_join(left,right,left_key,right_key)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC075,def inner_join,"f=ns['inner_join']; left=[{'id':1,'a':'x'}]; right=[{'rid':1,'b':'y'}]; out=f(left,right,'id','rid'); assert len(out)==1 and out[0]['a']=='x' and out[0]['b']=='y'
+return 'inner_join() passed cases'",prompt_PYC075/unittest.py
+PYC076,8,cache,define class LRUCache with get and put.,"Task ID: PYC076
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC076
+
+Your code must contain this required symbol:
+class LRUCache
+
+Implement this task:
+define class LRUCache with get and put..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC076,class LRUCache,"C=ns['LRUCache']; c=C(2); c.put(1,'a'); c.put(2,'b'); assert c.get(1)=='a'; c.put(3,'c'); assert c.get(2) in (None, -1)
+return 'LRUCache class passed cases'",prompt_PYC076/unittest.py
+PYC077,8,tree,define class TreeNode and function inorder(root).,"Task ID: PYC077
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC077
+
+Your code must contain this required symbol:
+class TreeNode
+
+Implement this task:
+define class TreeNode and function inorder(root)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC077,class TreeNode,"T=ns['TreeNode']; inorder=ns['inorder']; r=T(2); r.left=T(1); r.right=T(3); assert inorder(r)==[1,2,3]
+return 'TreeNode/inorder passed cases'",prompt_PYC077/unittest.py
+PYC078,8,tree,define function is_valid_bst(root).,"Task ID: PYC078
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC078
+
+Your code must contain this required symbol:
+def is_valid_bst
+
+Implement this task:
+define function is_valid_bst(root)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC078,def is_valid_bst,"f=ns['is_valid_bst']; T=ns.get('TreeNode')
+if T is None:
+    class T:
+        def __init__(self,val,left=None,right=None): self.val=val; self.left=left; self.right=right
+r=T(2,T(1),T(3)); bad=T(2,T(3),T(1)); assert f(r) is True and f(bad) is False
+return 'is_valid_bst() passed cases'",prompt_PYC078/unittest.py
+PYC079,8,graph,"define function dijkstra(graph,start) with nonnegative weights.","Task ID: PYC079
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC079
+
+Your code must contain this required symbol:
+def dijkstra
+
+Implement this task:
+define function dijkstra(graph,start) with nonnegative weights..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC079,def dijkstra,"f=ns['dijkstra']; g={'a':{'b':1,'c':4},'b':{'c':2},'c':{}}; assert f(g,'a')['c']==3
+return 'dijkstra() passed cases'",prompt_PYC079/unittest.py
+PYC080,8,heap,"define function top_k_frequent(items,k).","Task ID: PYC080
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC080
+
+Your code must contain this required symbol:
+def top_k_frequent
+
+Implement this task:
+define function top_k_frequent(items,k)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC080,def top_k_frequent,"f=ns['top_k_frequent']; out=f([1,1,1,2,2,3],2); assert set(out)=={1,2} and len(out)==2
+return 'top_k_frequent() passed cases'",prompt_PYC080/unittest.py
+PYC081,9,program,write a Python program function summarize_transactions(rows) grouping monthly totals by category.,"Task ID: PYC081
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC081
+
+Your code must contain this required symbol:
+def summarize_transactions
+
+Implement this task:
+write a Python program function summarize_transactions(rows) grouping monthly totals by category..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC081,def summarize_transactions,"f=ns['summarize_transactions']; rows=[{'date':'2026-01-02','category':'food','amount':10},{'date':'2026-01-20','category':'food','amount':5},{'date':'2026-02-01','category':'gas','amount':7}]; out=f(rows); assert out[('2026-01','food')]==15 and out[('2026-02','gas')]==7
+return 'summarize_transactions() passed cases'",prompt_PYC081/unittest.py
+PYC082,9,program,"write function normalize_records(rows,schema) filling missing fields with defaults.","Task ID: PYC082
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC082
+
+Your code must contain this required symbol:
+def normalize_records
+
+Implement this task:
+write function normalize_records(rows,schema) filling missing fields with defaults..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC082,def normalize_records,"f=ns['normalize_records']; rows=[{'a':1}]; schema={'a':0,'b':2}; assert f(rows,schema)==[{'a':1,'b':2}]
+return 'normalize_records() passed cases'",prompt_PYC082/unittest.py
+PYC083,9,program,write function validate_user_records(rows) returning errors list with row index and message.,"Task ID: PYC083
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC083
+
+Your code must contain this required symbol:
+def validate_user_records
+
+Implement this task:
+write function validate_user_records(rows) returning errors list with row index and message..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC083,def validate_user_records,"f=ns['validate_user_records']; out=f([{'name':'A','email':'a@b.com'},{'name':'B'}]); assert isinstance(out,list) and len(out)>=1
+return 'validate_user_records() passed cases'",prompt_PYC083/unittest.py
+PYC084,9,program,"write function build_markdown_table(rows, columns).","Task ID: PYC084
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC084
+
+Your code must contain this required symbol:
+def build_markdown_table
+
+Implement this task:
+write function build_markdown_table(rows, columns)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC084,def build_markdown_table,"f=ns['build_markdown_table']; out=f([{'a':1,'b':2}], ['a','b']); assert '| a | b |' in out and '| 1 | 2 |' in out
+return 'build_markdown_table() passed cases'",prompt_PYC084/unittest.py
+PYC085,9,program,"write function diff_dicts(old,new) returning added, removed, changed.","Task ID: PYC085
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC085
+
+Your code must contain this required symbol:
+def diff_dicts
+
+Implement this task:
+write function diff_dicts(old,new) returning added, removed, changed..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC085,def diff_dicts,"f=ns['diff_dicts']; out=f({'a':1,'b':2},{'b':3,'c':4}); assert out['added']=={'c':4} and out['removed']=={'a':1} and out['changed']=={'b':(2,3)}
+return 'diff_dicts() passed cases'",prompt_PYC085/unittest.py
+PYC086,9,program,"write function retry(fn, attempts, delay_seconds).","Task ID: PYC086
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC086
+
+Your code must contain this required symbol:
+def retry
+
+Implement this task:
+write function retry(fn, attempts, delay_seconds)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC086,def retry,"f=ns['retry']; state={'n':0}
+def flaky():
+    state['n']+=1
+    if state['n']<2: raise ValueError('x')
+    return 7
+assert f(flaky,3,0)==7
+return 'retry() passed cases'",prompt_PYC086/unittest.py
+PYC087,9,program,"write async function fetch_all(urls, session) using asyncio.gather.","Task ID: PYC087
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC087
+
+Your code must contain this required symbol:
+async def fetch_all
+
+Implement this task:
+write async function fetch_all(urls, session) using asyncio.gather..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC087,async def fetch_all,"import inspect; f=ns['fetch_all']; assert inspect.iscoroutinefunction(f)
+return 'fetch_all() is async'",prompt_PYC087/unittest.py
+PYC088,9,program,"write function rate_limit(calls, per_seconds) decorator.","Task ID: PYC088
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC088
+
+Your code must contain this required symbol:
+def rate_limit
+
+Implement this task:
+write function rate_limit(calls, per_seconds) decorator..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC088,def rate_limit,"f=ns['rate_limit']; dec=f(100,1)
+@dec
+def g(): return 3
+assert g()==3
+return 'rate_limit() basic decorator case passed'",prompt_PYC088/unittest.py
+PYC089,9,program,"write function reconcile_inventory(expected, observed).","Task ID: PYC089
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC089
+
+Your code must contain this required symbol:
+def reconcile_inventory
+
+Implement this task:
+write function reconcile_inventory(expected, observed)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC089,def reconcile_inventory,"f=ns['reconcile_inventory']; out=f({'a':5,'b':1},{'a':3,'c':2}); assert isinstance(out, dict) and ('a' in str(out))
+return 'reconcile_inventory() returned plausible dict'",prompt_PYC089/unittest.py
+PYC090,9,program,"write function compute_confusion_matrix(y_true,y_pred,labels).","Task ID: PYC090
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC090
+
+Your code must contain this required symbol:
+def compute_confusion_matrix
+
+Implement this task:
+write function compute_confusion_matrix(y_true,y_pred,labels)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC090,def compute_confusion_matrix,"f=ns['compute_confusion_matrix']; out=f(['a','b','a'],['a','a','a'],['a','b']); assert out[0][0]==2 and out[1][0]==1
+return 'compute_confusion_matrix() passed cases'",prompt_PYC090/unittest.py
+PYC091,10,multi_stage,"write function mini_sql_select(rows, select_cols, where_fn=None, order_by=None).","Task ID: PYC091
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC091
+
+Your code must contain this required symbol:
+def mini_sql_select
+
+Implement this task:
+write function mini_sql_select(rows, select_cols, where_fn=None, order_by=None)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC091,def mini_sql_select,"f=ns['mini_sql_select']; rows=[{'a':2,'b':'x'},{'a':1,'b':'y'}]; out=f(rows,['b'],lambda r:r['a']>0,'b'); assert out==[{'b':'x'},{'b':'y'}]
+return 'mini_sql_select() passed cases'",prompt_PYC091/unittest.py
+PYC092,10,multi_stage,"write function train_test_split_rows(rows, test_fraction, seed).","Task ID: PYC092
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC092
+
+Your code must contain this required symbol:
+def train_test_split_rows
+
+Implement this task:
+write function train_test_split_rows(rows, test_fraction, seed)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC092,def train_test_split_rows,"f=ns['train_test_split_rows']; train,test=f(list(range(10)),0.3,1); assert len(train)==7 and len(test)==3 and set(train)|set(test)==set(range(10))
+return 'train_test_split_rows() passed cases'",prompt_PYC092/unittest.py
+PYC093,10,multi_stage,"write function rolling_mean(xs, window) returning list with None until window full.","Task ID: PYC093
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC093
+
+Your code must contain this required symbol:
+def rolling_mean
+
+Implement this task:
+write function rolling_mean(xs, window) returning list with None until window full..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC093,def rolling_mean,"f=ns['rolling_mean']; assert f([1,2,3,4],3)==[None,None,2.0,3.0]
+return 'rolling_mean() passed cases'",prompt_PYC093/unittest.py
+PYC094,10,multi_stage,"write function detect_anomalies_zscore(xs, threshold=3.0).","Task ID: PYC094
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC094
+
+Your code must contain this required symbol:
+def detect_anomalies_zscore
+
+Implement this task:
+write function detect_anomalies_zscore(xs, threshold=3.0)..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC094,def detect_anomalies_zscore,"f=ns['detect_anomalies_zscore']; out=f([1,1,1,1,100],1.5); assert 4 in out or 100 in out
+return 'detect_anomalies_zscore() passed cases'",prompt_PYC094/unittest.py
+PYC095,10,multi_stage,"write function parse_log_events(text) extracting timestamp, level, message dicts.","Task ID: PYC095
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC095
+
+Your code must contain this required symbol:
+def parse_log_events
+
+Implement this task:
+write function parse_log_events(text) extracting timestamp, level, message dicts..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC095,def parse_log_events,"f=ns['parse_log_events']; out=f('2026-01-01 INFO started\n2026-01-02 ERROR failed'); assert len(out)==2 and out[0]['level']=='INFO'
+return 'parse_log_events() passed cases'",prompt_PYC095/unittest.py
+PYC096,10,multi_stage,"write class EventEmitter with on, off, emit.","Task ID: PYC096
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC096
+
+Your code must contain this required symbol:
+class EventEmitter
+
+Implement this task:
+write class EventEmitter with on, off, emit..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC096,class EventEmitter,"E=ns['EventEmitter']; e=E(); seen=[]
+def cb(x): seen.append(x)
+e.on('a',cb); e.emit('a',3); e.off('a',cb); e.emit('a',4); assert seen==[3]
+return 'EventEmitter class passed cases'",prompt_PYC096/unittest.py
+PYC097,10,multi_stage,write function dependency_order(tasks) with cycle detection.,"Task ID: PYC097
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC097
+
+Your code must contain this required symbol:
+def dependency_order
+
+Implement this task:
+write function dependency_order(tasks) with cycle detection..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC097,def dependency_order,"f=ns['dependency_order']; tasks={'a':[],'b':['a'],'c':['b']}; assert f(tasks)==['a','b','c']
+return 'dependency_order() passed cases'",prompt_PYC097/unittest.py
+PYC098,10,multi_stage,"write function paginate(items, page_size) returning list of pages.","Task ID: PYC098
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC098
+
+Your code must contain this required symbol:
+def paginate
+
+Implement this task:
+write function paginate(items, page_size) returning list of pages..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC098,def paginate,"f=ns['paginate']; assert f([1,2,3,4,5],2)==[[1,2],[3,4],[5]]
+return 'paginate() passed cases'",prompt_PYC098/unittest.py
+PYC099,10,multi_stage,"write function simple_template_render(template, context) replacing {{name}}.","Task ID: PYC099
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC099
+
+Your code must contain this required symbol:
+def simple_template_render
+
+Implement this task:
+write function simple_template_render(template, context) replacing {{name}}..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC099,def simple_template_render,"f=ns['simple_template_render']; assert f('Hi {{name}}', {'name':'Ada'})=='Hi Ada'
+return 'simple_template_render() passed cases'",prompt_PYC099/unittest.py
+PYC100,10,multi_stage,"write function run_pipeline(data, steps) applying named step functions and logging outputs.","Task ID: PYC100
+
+Return ONLY valid Python code.
+Do not use Markdown fences. Do not include prose, explanations, examples, print statements, or tests.
+
+Your code must contain this exact check-token line:
+# CHECK_TOKEN: PYC100
+
+Your code must contain this required symbol:
+def run_pipeline
+
+Implement this task:
+write function run_pipeline(data, steps) applying named step functions and logging outputs..
+
+Start your answer with the check-token line, then provide the Python implementation.",# CHECK_TOKEN: PYC100,def run_pipeline,"f=ns['run_pipeline']; steps=[('inc',lambda x:x+1),('double',lambda x:x*2)]; out=f(3,steps); assert out==8 or (isinstance(out,tuple) and out[0]==8)
+return 'run_pipeline() passed cases'",prompt_PYC100/unittest.py

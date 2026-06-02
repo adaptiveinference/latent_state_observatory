@@ -60,11 +60,24 @@ class InferenceHealthTracker:
         self.full_input_ids = None          # [prompt + generated]
         self.generated_ids = []             # generated y_1 ... y_t
 
+
+    @torch.no_grad()
+    def format_prompt_for_model(self, tokenizer, prompt):
+        if hasattr(tokenizer, "apply_chat_template"):
+            messages = [{"role": "user", "content": prompt}]
+            return tokenizer.apply_chat_template(
+                messages,
+                tokenize=False,
+                add_generation_prompt=True,
+            )
+        else:
+            return prompt
+
     @torch.no_grad()
     def start_prompt(self, prompt: str):
         self.reset()
-        # TransformerLens returns [batch, pos] token tensors directly.
-        self.full_input_ids = self.model.to_tokens(prompt).to(self.device)
+        text                        = self.format_prompt_for_model(self.tokenizer, prompt)
+        self.full_input_ids         = self.model.to_tokens(text).to(self.device)
         self.original_prompt_tokens = self.full_input_ids
 
     def _cache_names_filter(self, name: str) -> bool:
