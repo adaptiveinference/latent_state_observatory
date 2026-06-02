@@ -96,7 +96,7 @@ class InferenceHealthTracker:
         return h_normed[:, -1, :], prob
 
     @torch.no_grad()
-    def _next_token_distribution(self, input_ids):
+    def _next_token_distribution(self, input_ids, collect_internal_states = True):
         """
         Surgical TransformerLens swap-in for your old HuggingFace hidden-state
         extraction path.
@@ -145,7 +145,7 @@ class InferenceHealthTracker:
             )
 
         internal_probe = None
-        if self.internal_prober is not None:
+        if self.internal_prober is not None and collect_internal_states:
             internal_probe = self.internal_prober.collect(cache, position=-1)
 
         return logprobs, hidden_layer_info, internal_probe
@@ -169,7 +169,7 @@ class InferenceHealthTracker:
     # =======================================================================
     @torch.no_grad()
     def run_true_inference(self, input, temperature):
-        full_logprobs, hidden_layer_info, internal_probe = self._next_token_distribution(self.full_input_ids)
+        full_logprobs, hidden_layer_info, internal_probe = self._next_token_distribution(self.full_input_ids, collect_internal_states=True)
 
         if temperature == 0.0:
             next_token_id = torch.argmax(full_logprobs, dim=-1, keepdim=True)
@@ -198,7 +198,7 @@ class InferenceHealthTracker:
                 dtype=torch.long,
                 device=self.device,
             )
-            prior_logprobs, hidden_layer_info, _ = self._next_token_distribution(prior_input_ids)
+            prior_logprobs, hidden_layer_info, _ = self._next_token_distribution(prior_input_ids, collect_internal_states = False)
             logp_prior = prior_logprobs[0, token_id].item()
         return logp_prior, hidden_layer_info
 

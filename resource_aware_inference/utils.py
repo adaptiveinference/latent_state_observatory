@@ -120,10 +120,11 @@ class AttentionSpectralStats:
     layer_idx: int
     head_idx: int
     spectral_entropy: float
-    effective_rank: float
+    effective_rank_norm: float
     concentration: float
     top_singular_value: float
     singular_value_sum: float
+    sequence_len_so_far: int
 
 
 @dataclass
@@ -278,16 +279,17 @@ class InternalProber:
                     continue
                 svals = torch.linalg.svdvals(A)
                 svals = svals.detach().double().numpy()
-                entropy, eff_rank, concentration = self._spectral_summary(svals)
+                entropy, eff_rank, concentration, T = self._spectral_summary(svals)
                 stats.append(
                     AttentionSpectralStats(
                         layer_idx=layer,
                         head_idx=head,
                         spectral_entropy=entropy,
-                        effective_rank=eff_rank,
+                        effective_rank_norm=eff_rank,
                         concentration=concentration,
                         top_singular_value=float(svals[0]) if len(svals) else np.nan,
                         singular_value_sum=float(np.sum(svals)) if len(svals) else np.nan,
+                        sequence_len_so_far = T,
                     )
                 )
         return stats
@@ -417,11 +419,12 @@ class InternalProber:
         total = float(np.sum(values))
         if total <= self.eps or values.size == 0:
             return np.nan, np.nan, np.nan
-        p = values / total
-        entropy = float(-np.sum(p * np.log(p + self.eps)))
-        eff_rank = float(np.exp(entropy))
+        p             = values / total
+        T             = len(p)
+        entropy       = float(-np.sum(p * np.log(p + self.eps)))
+        eff_rank      = float(np.exp(entropy)) / T
         concentration = float(np.max(p))
-        return entropy, eff_rank, concentration
+        return entropy, eff_rank, concentration, T
 
     def _latest_vector(self, tensor: torch.Tensor, position: int = -1) -> torch.Tensor:
         x = self._to_metric_tensor(tensor)

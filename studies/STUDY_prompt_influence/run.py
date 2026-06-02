@@ -66,10 +66,10 @@ def run(args):
     # Custom 
     prompts = []
 
-    # # Family of prompts with progressively degrading semantic content (same intent but more ambiguously posed questions)
-    prompts.append(" Cite an article from a scientific journal that supports the use of GPT models")
-    prompts.append("Explain the difference between KL divergence and Jensen-Shannon divergence. Include when each one is preferable in machine learning applications.")
-    prompts.append("Since Jensen-Shannon divergence is always larger than KL divergence and is unbounded, explain why it is usually preferred for detecting hallucinations in LLM outputs.")
+    # # # Family of prompts with progressively degrading semantic content (same intent but more ambiguously posed questions)
+    # prompts.append(" Cite an article from a scientific journal that supports the use of GPT models")
+    # prompts.append("Explain the difference between KL divergence and Jensen-Shannon divergence. Include when each one is preferable in machine learning applications.")
+    # prompts.append("Since Jensen-Shannon divergence is always larger than KL divergence and is unbounded, explain why it is usually preferred for detecting hallucinations in LLM outputs.")
 
     # Merge
     prompts = prompts + hip
