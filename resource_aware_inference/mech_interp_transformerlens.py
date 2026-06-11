@@ -32,6 +32,7 @@ class InferenceHealthTracker:
     ):
         self.device = device
         self.prior_window = prior_window
+        self.use_chat_template = True
 
         # Maintain a rolling window of these many past tokens
         self.rolling_stat_window = 50
@@ -63,15 +64,23 @@ class InferenceHealthTracker:
 
     @torch.no_grad()
     def format_prompt_for_model(self, tokenizer, prompt):
-        if hasattr(tokenizer, "apply_chat_template"):
+        use_template = (
+            self.use_chat_template
+            and tokenizer is not None
+            and hasattr(tokenizer, "apply_chat_template")
+            and getattr(tokenizer, "chat_template", None) is not None            
+        )
+
+        if use_template:
             messages = [{"role": "user", "content": prompt}]
             return tokenizer.apply_chat_template(
                 messages,
                 tokenize=False,
                 add_generation_prompt=True,
             )
-        else:
-            return prompt
+
+        # Fallback for base models or chat models without registered templates
+        return prompt
 
     @torch.no_grad()
     def start_prompt(self, prompt: str):
@@ -236,7 +245,7 @@ class InferenceHealthTracker:
         #   Pointwise formulation
         #    PMI(y1..yt | x)= -log(p(y1..yt)) ) - ( -log(p(y1..yt | x)) )
         #                   = log(p(y1..yt | x) ) - log(p(y1..yt)
-        r_t = logp_full - logp_prior if logp_prior is not None else 0
+        pmi = logp_full - logp_prior if logp_prior is not None else 0
 
         # 3.2   Per-layer stats
         layerstats = self.analyze_layers(H_full, H_prior)
@@ -249,14 +258,14 @@ class InferenceHealthTracker:
         )
 
         # 5. Update running answerability stats
-        self.pmi_stats.update_moving_stats(r_t)
+        self.pmi_stats.update_moving_stats(pmi)
 
         return {
             "token_id"      : token_id.item(),
             "token_text"    : self.tokenizer.decode([token_id.item()]),
             "logp_full"     : logp_full,
             "logp_prior"    : logp_prior,
-            "r_t"           : r_t,
+            "pmi"           : pmi,
             "pmi_mean"      : self.pmi_stats.rolling_mean,
             "pmi_var"       : self.pmi_stats.rolling_var,
             "layerstats"    : layerstats,
@@ -394,31 +403,6 @@ def plotPmi(results, pdf):
         pdf.savefig(fig)
         plt.close(fig)
 
-        # # =====================================================
-        # # Cross correlation between DJS and layer Entropy
-        # # =====================================================
-        # f       = plt.figure(figsize=(11, 8.5))
-        # nLayers = result["DJS"].shape[1]
-        # layers_to_plot = [0, int(nLayers/2) , nLayers-1]
-        # nLayersToPlot  = len(layers_to_plot)
 
-        # for idx,layer in enumerate(layers_to_plot):
-        #     djs = result["DJS"][layer]
-        #     e   = result["layer_entropy"][layer]
-        #     xcorr, lags = utils.crossCorrelation(djs, e)
-            
-        #     ax= f.add_subplot(nLayersToPlot, 1 , idx+1)
-        #     ax.plot(lags, np.absolute(xcorr)**2, marker="o" )
-        #     ax.grid(True)
-        #     ax.set_ylim(bottom=0, top=1.0)
-        #     ax.set_ylabel(f"Layer {layer}")
-
-        #     if idx == 0:
-        #         ax.set_title(rf"$|CrossCorrelation(DJS, Entropy)|^2$ ")
-        #     if idx == (nLayersToPlot-1):
-        #         ax.set_xlabel("Token lag")
-        # f.tight_layout(rect=[0, 0, 1, 0.96])
-        # pdf.savefig(f)            
-        # plt.close(f)
 
 

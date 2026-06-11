@@ -1,6 +1,7 @@
 
 # Get root of the repo
 import subprocess
+import copy
 import sys, os
 import pandas as pd
 import numpy as np
@@ -79,7 +80,8 @@ def run(args):
 
     merger = PdfWriter()
     # for idx, prompt in enumerate(prompts):
-    for row in df.itertuples():
+    # for row in df.itertuples():
+    for row in df.iloc[::-1].itertuples():        
         prompt = row.prompt
         idx    = row.task_id
         outdir = os.path.join(default_output, f"prompt_{idx}")
@@ -107,12 +109,14 @@ def run(args):
         print("MODEL OUTPUT:")
         model_out_text = result["text"]
         print(model_out_text)
+
         with open(os.path.join(outdir, "response.py"), "w") as f: f.write(model_out_text)
 
 
         # Grab data for each step.
         # For each step, grab the final logit stats, and
         # the stats for each hidden layer.
+        final_layers = []
         DJS = []
         layer_entropy = []
         attention_spectral_records = []
@@ -121,6 +125,12 @@ def run(args):
         for step in result["trace"]:
             # Truncate text to 20 chars and align left
             text = step['token_text'][:20]
+
+            # Handle final layer metrics
+            final_layer = copy.deepcopy(step)
+            final_layer.pop('layerstats', None)
+            final_layer.pop('internal_probe', None)
+            final_layers.append(final_layer)
             
             # Handle the 'None' case for logp_prior to avoid float formatting errors
             log_posterior = step['logp_full']
@@ -153,21 +163,22 @@ def run(args):
                     residual_update_records.append(rec)
 
         # Jensen-Shannon divergence num_tokens x num_layers
-        DJS_df           = pd.DataFrame.from_records(DJS)    
-        layer_entropy_df = pd.DataFrame.from_records(layer_entropy)     
-
-        result["DJS"]           = DJS_df
-        result["layer_entropy"] = layer_entropy_df
-
+        result["final_layers"]       = pd.DataFrame.from_records(final_layers)    
+        result["DJS"]                = pd.DataFrame.from_records(DJS)    
+        result["layer_entropy"]      = pd.DataFrame.from_records(layer_entropy)     
         result["attention_spectral"] = pd.DataFrame.from_records(attention_spectral_records)
         result["mlp_gating"]         = pd.DataFrame.from_records(mlp_gating_records)
         result["residual_update"]    = pd.DataFrame.from_records(residual_update_records)
 
         # Persist experiment-facing telemetry for downstream clustering / trajectory
         # distance work without changing mech_interp_transformerlens.py.
+        result["final_layers"]      .to_csv(os.path.join(outdir, f"final_layers.csv"), index=False)
+        result["DJS"]               .to_csv(os.path.join(outdir, f"layer_djs.csv"), index=False)
+        result["layer_entropy"]     .to_csv(os.path.join(outdir, f"layer_entropy.csv"), index=False)
         result["attention_spectral"].to_csv(os.path.join(outdir, f"attention_spectral.csv"), index=False)
-        result["mlp_gating"].to_csv(os.path.join(outdir, f"mlp_gating.csv"), index=False)
-        result["residual_update"].to_csv(os.path.join(outdir, f"residual_update.csv"), index=False)
+        result["mlp_gating"]        .to_csv(os.path.join(outdir, f"mlp_gating.csv"), index=False)
+        result["residual_update"]   .to_csv(os.path.join(outdir, f"residual_update.csv"), index=False)
+
 
         # Aggregate    
         results.append(result)
@@ -204,8 +215,8 @@ if __name__ == "__main__":
         ap.add_argument(
             "--prompt_csv", 
             required=False, 
-            default = os.path.join(PROJECT, "prompt_library_pminervini_HaluEval.csv"),
-            help = "CSV file containing prompts. Schema: 'prompt': str, 'hallucinated':str (yes/no)  "
+            default = os.path.join(ROOT, "studies",  "STUDY_code_eval", "python_code_eval_bundle_100", "prompts.csv"),
+            help = "CSV file containing coding prompts."
         )
 
         ap.add_argument(
@@ -226,7 +237,7 @@ if __name__ == "__main__":
         ap.add_argument(
             "--disable_internal_probe",
             action="store_true",
-            help="Disable InternalProber collection for faster legacy runs."
+            help="Disable Transformer Lens collection for faster legacy runs."
         )
         args=ap.parse_args()
         return args
