@@ -5,12 +5,48 @@
 
 [Interpretability Code](resource_aware_inference/README.md)
 
-### CodeEval Examples: Output Quality vs. Internal Telemetry
+### Can Internal Telemetry Predict Output Quality?
+### Hypothesis
+
+During autoregressive generation, internal hidden-state telemetry
+contains information about the eventual quality of the generated output.
+
+This project investigates whether metrics such as prompt influence,
+attention structure, entropy, and layer-wise divergence can predict
+generation success before the sequence is complete.
+
+
+<table>
+<tr>
+<td width="50%">
+
+<b>Successful Generation</b>
+
+<img src="studies/STUDY_code_eval/logs/Qwen/Qwen1.5-1.8B-Chat/2026.06.09_19.11.37/prompt_PYC005/inference_health_prompt.png">
+<figcaption>
+    <b>Figure 1.</b> Successful generation - Output passed all constraints and unit tests. Prompt influence remains elevated
+    throughout decoding, indicating continued conditioning on the original task.
+  </figcaption>
+
+
+</td>
+
+<td width="50%">
+
+<b>Failed Generation</b>
+
+<img src="studies/STUDY_code_eval/logs/Qwen/Qwen1.5-1.8B-Chat/2026.06.09_19.11.37/prompt_PYC012/inference_health_prompt.png">
+
+<figcaption>
+    <b>Figure 2.</b> Failed generation - Output failed unit test, and violated prompt constraint of not generating unit test code. Prompt influence collapses early,
+    after which generation becomes increasingly self-conditioned.
+  </figcaption>
+</td>
+</tr>
+</table>
+
 
 #### Successful Generation
-Output passed all constraints and unit tests.
-Response stays grounded to the prompt (high pointwise mutual information between response and prompt, aka 'prompt influence')
-![Good Telemetry](studies/STUDY_code_eval/logs/Qwen/Qwen1.5-1.8B-Chat/2026.06.09_19.11.37/prompt_PYC005/inference_health_prompt.png)
 
 ##### Prompt:
 ```text
@@ -47,12 +83,7 @@ def first_item(xs):
 ```
 
 
-### Failed Generation
-Output failed unit test, and violated prompt constraint of not generating unit test code.
-Response tends to degenerate into a self sustaining auto-regressive trajectory (low pointwise mutual information between response and prompt)
-
-![Bad Telemetry](studies/STUDY_code_eval/logs/Qwen/Qwen1.5-1.8B-Chat/2026.06.09_19.11.37/prompt_PYC012/inference_health_prompt.png)
-
+#### Failed Generation
 
 ##### Prompt:
 ```text
