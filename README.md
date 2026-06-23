@@ -5,12 +5,13 @@
 1. Can we interpret the internal workings of generative language models to extract a useful proxy signal for output token reliability during inference? 
 2. If a reliability metric can predict the health of the generated sequence early enough in the pipeline, can we use it to optimize the model architecture and reduce token costs?
 
-[View Interpretability Code](resource_aware_inference/README.md)
+[Interpretability Code](resource_aware_inference/README.md)
 
 ### Learnability
 1. Can we mathematically quantify the quality of datasets used for training frontier models using first principles?
+2. Tech note: https://subhadeep1978.github.io/notes/learnability/learnability.pdf 
 
-[View Learnability Code](learnability/README.md)
+[Learnability Code](learnability/README.md)
 
 
 
