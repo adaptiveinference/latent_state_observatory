@@ -1,6 +1,20 @@
 # hiddenstate_labs
 
-Research notes, tooling, and experiments focused on:
+## Open Questions I am Curious About
+### Interpretability
+1. Can we interpret the internal workings of generative language models to extract a useful proxy signal for output token reliability during inference? 
+2. If a reliability metric can predict the health of the generated sequence early enough in the pipeline, can we use it to optimize the model architecture and reduce token costs?
+
+[View Interpretability Code](resource_aware_inference/README.md)
+
+### Learnability
+1. Can we mathematically quantify the quality of datasets used for training frontier models using first principles?
+
+[View Learnability Code](learnability/README.md)
+
+
+
+### Research notes, tooling, and experiments focused on:
 
 - Autoregressive inference diagnostics
 - Hidden-state observability
