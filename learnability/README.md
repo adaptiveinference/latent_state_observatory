@@ -1,0 +1,6 @@
+# Measuring Learning Efficiency via a Practical Information-Theoretic Approximation
+https://subhadeep1978.github.io/notes/learnability/learnability.pdf 
+
+
+## Summary
+The objective of this note is to develop a practical method for measuring the learning efficiency of predictive models relative to the intrinsic structure present in a dataset. In many machine learning settings, model performance is evaluated solely by accuracy or loss metrics, which makes it difficult to distinguish whether poor performance arises from model limitations or from the inherent unpredictability of the target variable given the available inputs. Information theory provides a principled way to characterize this distinction through the mutual information I(X;Y) which quantifies the amount of information the input variables X contain about the target Y. However, direct estimation of mutual information in high-dimensional settings is typically intractable. This work proposes a practical approximation that uses negative log-likelihood (NLL) under a strong and well-calibrated reference model as a proxy for the conditional entropy H(Y | X). This enables us to estimate a reasonable lower bound on the intrinsic learnability of a dataset, and a corresponding notion of model learning efficiency as the fraction of available information that a given model successfully extracts from that data.
