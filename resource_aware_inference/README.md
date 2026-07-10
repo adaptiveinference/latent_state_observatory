@@ -40,7 +40,7 @@ p(y(t) | y<t, x)
 
 A shadow inference pass using only generated history:
 ```text
-  p(y(t) | y<t, x)
+  p(y(t) | y<t)
 ```
 This approximates a "self-sustaining" continuation where the model ignores the original prompt.
 The difference between these distributions provides a proxy for:

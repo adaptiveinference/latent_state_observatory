@@ -120,7 +120,7 @@ class InferenceHealthTracker:
     @torch.no_grad()
     def _next_token_distribution(self, input_ids, collect_internal_states = True):
         """
-        Surgical TransformerLens swap-in for your old HuggingFace hidden-state
+        Surgical TransformerLens swap-in for HuggingFace hidden-state
         extraction path.
 
         Returns:
